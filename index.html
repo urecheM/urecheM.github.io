@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clara Ureche: Electrical & Electronics Engineering Portfolio</title>
+<meta name="description" content="Technical project portfolio of Clara Ureche: BEng Electrical & Electronics Engineering, Lancaster University. PCB design, embedded firmware, FPGA, control systems, RF/SDR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#FFF9FB; --card:#FFFFFF; --ink:#2B2130; --muted:#7A6B75;
+ --primary:#C2255C; --primary-dark:#9C1E4B; --accent:#E64980;
+ --pink-soft:#FCE7F1; --pink-mist:#FDF2F7; --border:#F3D9E5; --border-strong:#EBB8CE;
+ --shadow:0 10px 30px rgba(194,37,92,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.15}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,249,251,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--primary-dark)}
+.logo span{color:var(--accent)}
+nav ul{display:flex;gap:22px;list-style:none}
+nav a{color:var(--ink);font-size:.9rem;font-weight:500}
+nav a:hover{color:var(--primary);text-decoration:none}
+.burger{display:none;background:none;border:none;font-size:1.5rem;color:var(--primary);cursor:pointer}
+@media(max-width:760px){
+ nav ul{display:none;position:absolute;top:60px;left:0;right:0;background:var(--bg);flex-direction:column;padding:16px 24px;border-bottom:1px solid var(--border);gap:12px}
+ nav ul.open{display:flex}
+ .burger{display:block}
+}
+
+/* hero */
+.hero{position:relative;padding:84px 0 72px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+ radial-gradient(600px 300px at 85% 10%,rgba(230,73,128,.12),transparent 70%),
+ radial-gradient(500px 260px at 10% 90%,rgba(194,37,92,.09),transparent 70%)}
+.hero .wrap{position:relative}
+.kicker{display:inline-block;background:var(--pink-soft);color:var(--primary-dark);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:999px;border:1px solid var(--border-strong);margin-bottom:18px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.4rem);color:var(--ink);margin-bottom:10px}
+.hero h1 em{color:var(--primary);font-style:normal}
+.tagline{font-size:1.08rem;color:var(--muted);max-width:640px;margin-bottom:24px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{background:var(--card);border:1px solid var(--border-strong);color:var(--primary-dark);font-size:.8rem;font-weight:500;padding:5px 12px;border-radius:999px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:600;font-size:.92rem;transition:.18s;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark);text-decoration:none;transform:translateY(-1px)}
+.btn-ghost{border:1.5px solid var(--border-strong);color:var(--primary-dark);background:var(--card)}
+.btn-ghost:hover{border-color:var(--primary);text-decoration:none;transform:translateY(-1px)}
+
+/* sections */
+section{padding:64px 0}
+.sec-head{margin-bottom:34px}
+.sec-head h2{font-size:2rem;color:var(--ink)}
+.sec-head h2:after{content:"";display:block;width:56px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--primary),var(--accent));margin-top:10px}
+.sec-head p{color:var(--muted);margin-top:12px;max-width:700px}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.filter{background:var(--card);border:1.5px solid var(--border);color:var(--muted);font-size:.84rem;font-weight:600;padding:7px 16px;border-radius:999px;cursor:pointer;transition:.15s}
+.filter:hover{border-color:var(--accent);color:var(--primary)}
+.filter.active{background:var(--primary);border-color:var(--primary);color:#fff}
+
+/* project grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;box-shadow:var(--shadow);cursor:pointer;transition:.2s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(194,37,92,.14);border-color:var(--border-strong)}
+.card:hover:before{opacity:1}
+.card .num{font-family:'Fraunces',serif;font-size:.85rem;font-weight:700;color:var(--accent);letter-spacing:.06em;margin-bottom:8px}
+.card h3{font-size:1.18rem;margin-bottom:8px}
+.card p{font-size:.9rem;color:var(--muted);flex:1}
+.card .tools{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 10px}
+.tool{background:var(--pink-mist);border:1px solid var(--border);color:var(--primary-dark);font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:999px}
+.card .more{font-size:.85rem;font-weight:600;color:var(--primary)}
+.badge{position:absolute;top:18px;right:18px;background:var(--pink-soft);color:var(--primary-dark);font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--border-strong)}
+.card.hidden{display:none}
+
+/* modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(43,33,48,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:48px 16px}
+.modal-backdrop.open{display:flex}
+.modal{background:var(--card);border-radius:20px;max-width:820px;width:100%;padding:44px 48px;position:relative;box-shadow:0 30px 80px rgba(43,33,48,.3)}
+@media(max-width:640px){.modal{padding:32px 22px}}
+.modal .close{position:absolute;top:18px;right:18px;background:var(--pink-mist);border:1px solid var(--border);color:var(--primary-dark);width:36px;height:36px;border-radius:50%;font-size:1.05rem;cursor:pointer;font-weight:700}
+.modal .close:hover{background:var(--pink-soft)}
+.modal .num{font-family:'Fraunces',serif;color:var(--accent);font-weight:700;font-size:.9rem;letter-spacing:.06em}
+.modal h3{font-size:1.65rem;margin:6px 0 4px}
+.modal .sub{color:var(--muted);font-size:.95rem;margin-bottom:16px}
+.modal .tools{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.modal h4{font-family:'Inter',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--primary);margin:22px 0 8px}
+.modal p,.modal li{font-size:.94rem;color:#4A3D47}
+.modal ul{padding-left:20px;margin-top:6px}
+.modal li{margin-bottom:7px}
+.modal li b{color:var(--ink)}
+.modal p{margin-top:6px}
+
+/* report toggle */
+.rpt-toggle{display:inline-flex;background:var(--pink-mist);border:1px solid var(--border);border-radius:999px;padding:4px;gap:4px;margin-bottom:6px}
+.rpt-btn{border:none;background:transparent;color:var(--muted);font-family:'Inter',sans-serif;font-weight:600;font-size:.82rem;padding:7px 16px;border-radius:999px;cursor:pointer;transition:.15s}
+.rpt-btn:hover{color:var(--primary)}
+.rpt-btn.active{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(194,37,92,.25)}
+.rpt-note{font-size:.78rem;color:var(--muted);margin:8px 0 4px}
+.rpt-view{display:none}
+.rpt-view.show{display:block}
+
+/* schematic figure */
+.fig{margin:18px 0 6px;border:1px solid var(--border);border-radius:14px;background:var(--pink-mist);padding:16px 18px 10px}
+.fig svg{width:100%;height:auto;display:block}
+.fig figcaption{font-size:.78rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.fig figcaption b{color:var(--primary-dark)}
+
+/* tech tables */
+.tbl{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:.85rem}
+.tbl th,.tbl td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
+.tbl th{color:var(--primary-dark);font-weight:700;background:var(--pink-mist);font-size:.74rem;letter-spacing:.03em;text-transform:uppercase}
+.tbl td{color:#4A3D47}
+.tbl td:first-child{font-weight:600;color:var(--ink)}
+.mono{font-family:'JetBrains Mono',monospace;font-size:.86em;background:var(--pink-mist);border:1px solid var(--border);border-radius:6px;padding:1px 6px;color:var(--primary-dark)}
+.eq{font-family:'JetBrains Mono',monospace;font-size:.86rem;background:#2B2130;color:#FDE6EF;border-radius:10px;padding:12px 16px;margin:10px 0;overflow-x:auto;line-height:1.7}
+.eq .c{color:#9fb8ff}
+pre.code{background:#241a29;color:#f4e3ec;border-radius:12px;padding:15px 17px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.775rem;line-height:1.62;margin:10px 0 4px;border:1px solid #3a2b40}
+pre.code b{color:#ff9ec4;font-weight:600}
+.code-cap{font-size:.76rem;color:var(--muted);margin:2px 0 12px}
+.fig.shot{padding:10px}
+.fig.shot img{width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--border);background:#fff}
+.shot-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 4px}
+@media(max-width:560px){.shot-row{grid-template-columns:1fr}}
+.shot-row figure{margin:0}
+.btn-doc{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;font-weight:600;font-size:.85rem;padding:10px 18px;border-radius:10px;margin:2px 0 14px;transition:.15s}
+.btn-doc:hover{background:var(--primary-dark);text-decoration:none;transform:translateY(-1px)}
+.hero-kicker{display:block;color:var(--primary-dark);font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+.hero-tags{color:var(--muted);font-size:.94rem;font-weight:500;margin:0 0 26px;max-width:640px}
+.hero-tags b{color:var(--primary-dark);font-weight:600}
+
+/* skills */
+.skills-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;box-shadow:var(--shadow)}
+.skill-card h3{font-size:1.05rem;margin-bottom:14px;color:var(--primary-dark)}
+.bar-row{margin-bottom:12px}
+.bar-row .lbl{display:flex;justify-content:space-between;font-size:.84rem;font-weight:600;margin-bottom:5px}
+.bar-row .lbl span:last-child{color:var(--muted);font-weight:500}
+.bar{height:8px;background:var(--pink-mist);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--primary),var(--accent));width:0;transition:width 1s ease}
+.chipcloud{display:flex;flex-wrap:wrap;gap:8px}
+.tool.clk{cursor:pointer;transition:.15s;position:relative}
+.tool.clk:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-1px)}
+.skills-hint{font-size:.8rem;color:var(--muted);margin:-6px 0 20px;max-width:700px}
+
+/* topic list (inside modal) */
+.topic-list{margin-top:8px}
+.topic-item{border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:.15s;display:flex;gap:12px;align-items:flex-start}
+.topic-item:hover{border-color:var(--primary);background:var(--pink-mist);transform:translateX(3px)}
+.topic-item .ti-num{font-family:'Fraunces',serif;font-weight:700;color:var(--accent);font-size:.8rem;white-space:nowrap;padding-top:2px}
+.topic-item .ti-title{font-weight:600;font-size:.98rem;color:var(--ink)}
+.topic-item .ti-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+.topic-empty{color:var(--muted);font-size:.92rem;margin-top:8px}
+
+/* timeline */
+.timeline{position:relative;margin-left:14px;padding-left:30px;border-left:2px solid var(--border-strong)}
+.tl-item{position:relative;padding-bottom:30px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item:before{content:"";position:absolute;left:-39px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--pink-soft)}
+.tl-item .when{font-size:.78rem;font-weight:700;color:var(--accent);letter-spacing:.05em;text-transform:uppercase}
+.tl-item h3{font-size:1.08rem;margin:4px 0 2px}
+.tl-item .where{font-size:.86rem;color:var(--muted);margin-bottom:6px}
+.tl-item p{font-size:.9rem;color:#4A3D47}
+
+/* education */
+.edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;align-items:start}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:var(--shadow)}
+.edu-card h3{font-size:1.15rem;margin-bottom:4px}
+.edu-card .where{color:var(--muted);font-size:.9rem;margin-bottom:12px}
+.edu-card ul{list-style:none}
+.edu-card li{font-size:.9rem;padding:7px 0;border-bottom:1px dashed var(--border);color:#4A3D47}
+.edu-card li:last-child{border-bottom:none}
+
+/* contact + footer */
+.contact-box{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);border-radius:20px;padding:52px 40px;text-align:center;color:#fff}
+.contact-box h2{font-size:1.9rem;margin-bottom:10px}
+.contact-box p{opacity:.92;max-width:560px;margin:0 auto 26px}
+.contact-box .btn{background:#fff;color:var(--primary-dark)}
+.contact-box .btn:hover{transform:translateY(-1px)}
+.contact-box .links{margin-top:18px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.contact-box .links a{color:#fff;font-weight:600;text-decoration:underline;font-size:.92rem}
+footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.83rem}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+ .reveal{opacity:1;transform:none;transition:none}
+ html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="wrap nav">
+  <div class="logo">Clara <span>Ureche</span></div>
+  <nav>
+   <button class="burger" id="burger" aria-label="Menu">☰</button>
+   <ul id="menu">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+   </ul>
+  </nav>
+ </div>
+</header>
+
+<section class="hero">
+ <div class="wrap">
+  <span class="hero-kicker">Electrical &amp; Electronics Engineering · Lancaster University</span>
+  <h1>Hardware, from <em>schematic</em> to <em>signal</em>.</h1>
+  <p class="tagline">I'm Clara, a BEng Electrical &amp; Electronics Engineering student (IET-accredited, 2024–2027) who designs, builds, and verifies real systems: analogue PCBs, bare-metal firmware, FPGA processor cores, control loops, autonomous robots, and software-defined radio.</p>
+  <p class="hero-tags"><b>Focus areas:</b> PCB design (KiCad) · embedded C (STM32) · FPGA (VHDL, RISC-V) · control (MATLAB/Simulink) · RF (GNU Radio, SDR) · power electronics</p>
+  <div class="cta">
+   <a class="btn btn-primary" href="#projects">View Projects</a>
+   <a class="btn btn-ghost" href="mailto:urecheclara24@gmail.com">Get in Touch</a>
+  </div>
+ </div>
+</section>
+
+<section id="projects">
+ <div class="wrap">
+  <div class="sec-head reveal">
+   <h2>Project Portfolio</h2>
+   <p>Eight completed engineering projects spanning the principal domains of the discipline, each carried from specification and simulation through to construction, measurement, and validation: plus current builds in progress. Open any card, then switch to the <b>Advanced Report</b> for the full technical treatment.</p>
+  </div>
+  <div class="filters reveal" id="filters">
+   <button class="filter active" data-f="all">All</button>
+   <button class="filter" data-f="analogue">Analogue &amp; PCB</button>
+   <button class="filter" data-f="power">Power</button>
+   <button class="filter" data-f="embedded">Embedded</button>
+   <button class="filter" data-f="digital">Digital &amp; FPGA</button>
+   <button class="filter" data-f="control">Control &amp; Robotics</button>
+   <button class="filter" data-f="rf">RF &amp; DSP</button>
+   <button class="filter" data-f="wip">In Progress</button>
+  </div>
+  <div class="grid" id="grid"></div>
+ </div>
+</section>
+
+<section id="skills" style="background:var(--pink-mist)">
+ <div class="wrap">
+  <div class="sec-head reveal">
+   <h2>Technical Skills</h2>
+   <p>Every skill below is backed by a project on this page: nothing listed that hasn't been built, measured, or debugged.</p>
+  </div>
+  <p class="skills-hint reveal">Tip: click any tool, protocol, or domain tag to see the projects that use it.</p>
+  <div class="skills-cols">
+   <div class="skill-card reveal">
+    <h3>Languages</h3>
+    <div class="bar-row"><div class="lbl"><span>Python</span><span>Signal processing · tooling</span></div><div class="bar"><i data-w="92"></i></div></div>
+    <div class="bar-row"><div class="lbl"><span>C (bare-metal)</span><span>STM32 firmware</span></div><div class="bar"><i data-w="90"></i></div></div>
+    <div class="bar-row"><div class="lbl"><span>VHDL</span><span>RISC-V core</span></div><div class="bar"><i data-w="78"></i></div></div>
+    <div class="bar-row"><div class="lbl"><span>MATLAB</span><span>Control systems</span></div><div class="bar"><i data-w="78"></i></div></div>
+    <div class="bar-row"><div class="lbl"><span>C++ / Java / JS</span><span>Coursework &amp; front-end</span></div><div class="bar"><i data-w="65"></i></div></div>
+    <div class="bar-row"><div class="lbl"><span>R / SQL</span><span>Data analysis</span></div><div class="bar"><i data-w="55"></i></div></div>
+   </div>
+   <div class="skill-card reveal">
+    <h3>Tools &amp; Platforms</h3>
+    <div class="chipcloud">
+     <span class="tool clk">KiCad</span><span class="tool clk">LTSpice</span><span class="tool clk">MATLAB/Simulink</span>
+     <span class="tool clk">GNU Radio Companion</span><span class="tool clk">CST Microwave Studio</span><span class="tool clk">EDA Playground</span><span class="tool clk">GHDL</span><span class="tool clk">Arduino IDE</span>
+     <span class="tool clk">RTL-SDR</span><span class="tool clk">STM32 Cortex-M</span><span class="tool clk">Raspberry Pi</span>
+     <span class="tool clk">SolidWorks</span><span class="tool clk">Git / GitHub</span>
+    </div>
+    <h3 style="margin-top:22px">Protocols</h3>
+    <div class="chipcloud">
+     <span class="tool clk">UART</span><span class="tool clk">I2C</span><span class="tool clk">SPI</span>
+     <span class="tool clk">DMA</span><span class="tool clk">CAN (studied)</span>
+    </div>
+    <h3 style="margin-top:22px">Lab &amp; Test</h3>
+    <div class="chipcloud">
+     <span class="tool clk">Oscilloscope</span><span class="tool clk">Logic analyser</span>
+     <span class="tool clk">Signal generator</span><span class="tool clk">Multimeter</span><span class="tool clk">Electronic load</span>
+    </div>
+   </div>
+   <div class="skill-card reveal">
+    <h3>Domain Knowledge</h3>
+    <div class="chipcloud">
+     <span class="tool clk">Analogue circuit design</span><span class="tool clk">PCB layout &amp; grounding</span>
+     <span class="tool clk">Power electronics</span><span class="tool clk">Register-level embedded</span>
+     <span class="tool clk">Processor microarchitecture</span><span class="tool clk">RISC-V ISA</span>
+     <span class="tool clk">Classical control &amp; PID</span><span class="tool clk">Robotics &amp; mechatronics</span><span class="tool clk">DSP &amp; FFT analysis</span>
+     <span class="tool clk">RF spectrum &amp; demodulation</span><span class="tool clk">Antenna &amp; microwave design</span><span class="tool clk">Semiconductor devices &amp; CMOS</span>
+     <span class="tool clk">EMC / signal integrity</span>
+    </div>
+    <h3 style="margin-top:22px">Languages (Spoken)</h3>
+    <div class="chipcloud">
+     <span class="tool">English (fluent)</span><span class="tool">Romanian (native)</span>
+     <span class="tool">Spanish (fluent)</span><span class="tool">German (B2 · TestDaF)</span>
+     <span class="tool">Mandarin (conversational)</span>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="experience">
+ <div class="wrap">
+  <div class="sec-head reveal">
+   <h2>Experience &amp; Leadership</h2>
+   <p>Teaching, mentoring, and customer-facing roles that shaped how I communicate technical ideas to any audience.</p>
+  </div>
+  <div class="timeline">
+   <div class="tl-item reveal">
+    <span class="when">2024 – Present</span>
+    <h3>Peer Mentor: Electrical &amp; Electronics Engineering</h3>
+    <div class="where">Lancaster University</div>
+    <p>Informal mentor to fellow EEE students: one-on-one technical support, active contributor in course discussion groups, and a first point of call for lab and coursework questions.</p>
+   </div>
+   <div class="tl-item reveal">
+    <span class="when">2024 – Present</span>
+    <h3>Barista</h3>
+    <div class="where">Mighty Mugs Coffee: Seattle, WA</div>
+    <p>High-volume, customer-facing drive-through role; sharpened rapid communication and adaptability across a broad cross-section of customers.</p>
+   </div>
+   <div class="tl-item reveal">
+    <span class="when">2020 – 2023</span>
+    <h3>Ski Instructor &amp; Instructor Team Lead</h3>
+    <div class="where">Washington State, USA</div>
+    <p>Delivered group and private lessons to students aged 6–60 across all skill levels. Recruited and coordinated a team of peer instructors when client volume exceeded individual capacity; built a referral-based client base from scratch.</p>
+   </div>
+   <div class="tl-item reveal">
+    <span class="when">2022 – 2023</span>
+    <h3>English Language Tutor</h3>
+    <div class="where">Online: students in China</div>
+    <p>Taught English to students with Turner syndrome, beginning with no shared language; leveraged conversational Mandarin (6 years of study) to build rapport and adapt instruction.</p>
+   </div>
+   <div class="tl-item reveal">
+    <span class="when">Earlier</span>
+    <h3>Tennis Coach</h3>
+    <div class="where">Bellevue, WA</div>
+    <p>Led group sessions for children aged 4–13, designing session structures balancing skill development with engagement.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="education" style="background:var(--pink-mist)">
+ <div class="wrap">
+  <div class="sec-head reveal">
+   <h2>Education, Awards &amp; Certifications</h2>
+  </div>
+  <div class="edu">
+   <div class="edu-card reveal">
+    <h3>BEng (Hons) Electrical &amp; Electronics Engineering</h3>
+    <div class="where">Lancaster University · IET-Accredited · Oct 2024 – Jun 2027</div>
+    <ul>
+     <li><b>Relevant modules:</b> Control and Robotics · Digital Electronics and Software · Power Engineering · Electromagnetism &amp; Communications · Electronics Materials and Manufacturing</li>
+     <li><b>Coursework depth:</b> semiconductor physics, PN junctions, BJTs/MOSFETs and CMOS fabrication; PCB manufacturing, EMC/EMI, signal &amp; power integrity, ESD protection</li>
+     <li><b>Professional memberships:</b> IET Student Member · IEEE Student Member · Rewriting The Code</li>
+    </ul>
+   </div>
+   <div class="edu-card reveal">
+    <h3>Awards &amp; Certifications</h3>
+    <div class="where">Selected highlights</div>
+    <ul>
+     <li>National Merit Scholarship Letter of Commendation</li>
+     <li>AP Scholar with Distinction · AP International Diploma</li>
+     <li>Scholastic Art &amp; Writing Regional Gold Key: Photography</li>
+     <li>DECA State Qualifier: technical invention presented to industry panel</li>
+     <li>MATLAB · Simulink · Signal Processing Onramps (MathWorks)</li>
+     <li>TestDaF-Zertifikat: German B2 · Seals of Biliteracy (Spanish, Romanian)</li>
+    </ul>
+   </div>
+   <div class="edu-card reveal">
+    <h3>High School Diploma</h3>
+    <div class="where">Bellevue High School · Bellevue, WA · 2020 – 2024</div>
+    <ul>
+     <li><b>Advanced mathematics:</b> Linear Algebra &amp; Differential Equations, extending beyond the standard calculus sequence into the mathematics underpinning control systems, signal processing and circuit analysis</li>
+     <li><b>Special Topics in Computer Science:</b> post-APCSA coursework in data structures and algorithms, covering lists, stacks, queues, trees, hash maps, sorting/searching and algorithmic complexity</li>
+     <li>Strong STEM foundation carried directly into the BEng, including the AP Scholar with Distinction and National Merit commendations noted above</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="wrap">
+  <div class="contact-box reveal">
+   <h2>Let's build something.</h2>
+   <p>I'm seeking electrical, embedded, and hardware engineering internship opportunities. If my work looks like a fit for your team, I'd love to hear from you.</p>
+   <a class="btn" href="mailto:urecheclara24@gmail.com">urecheclara24@gmail.com</a>
+   <div class="links">
+    <a href="https://linkedin.com/in/ureche" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/urecheM" target="_blank" rel="noopener">GitHub</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <div class="wrap">© 2026 Clara Ureche · BEng Electrical &amp; Electronics Engineering, Lancaster University</div>
+</footer>
+
+<div class="modal-backdrop" id="backdrop" role="dialog" aria-modal="true">
+ <div class="modal" id="modal">
+  <button class="close" id="closeBtn" aria-label="Close">✕</button>
+  <div id="modalBody"></div>
+ </div>
+</div>
+
+<script>
+/* ===== schematics (inline SVG) ===== */
+const SVG_AMP = `
+<svg viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" role="img" aria-label="Class-AB power amplifier schematic">
+<style>
+ .w{stroke:#2B2130;stroke-width:1.5;fill:none}
+ .r{stroke:#E64980;stroke-width:2;fill:none}
+ .f{fill:#2B2130}
+ .lb{fill:#9C1E4B;font-size:12px;font-weight:600}
+ .vl{fill:#7A6B75;font-size:10.5px}
+ .nd{fill:#C2255C}
+</style>
+<!-- rails -->
+<line class="r" x1="40" y1="34" x2="720" y2="34"/><text class="lb" x="726" y="38">+Vcc</text>
+<line class="r" x1="40" y1="436" x2="720" y2="436"/><text class="lb" x="726" y="440">-Vee</text>
+<!-- input -->
+<text class="lb" x="30" y="150">IN</text>
+<line class="w" x1="46" y1="160" x2="70" y2="160"/>
+<line class="w" x1="70" y1="148" x2="70" y2="172"/><line class="w" x1="82" y1="148" x2="82" y2="172"/><text class="vl" x="60" y="188">Cin</text>
+<line class="w" x1="82" y1="160" x2="150" y2="160"/>
+<!-- LTP current mirror load -->
+<rect class="w" x="150" y="70" width="120" height="26" rx="4"/><text class="vl" x="160" y="87">current mirror load</text>
+<line class="w" x1="170" y1="34" x2="170" y2="70"/><line class="w" x1="250" y1="34" x2="250" y2="70"/>
+<line class="w" x1="170" y1="96" x2="170" y2="120"/><line class="w" x1="250" y1="96" x2="250" y2="120"/>
+<!-- Q1 -->
+<circle class="w" cx="170" cy="160" r="17"/><line class="w" x1="163" y1="151" x2="163" y2="169"/>
+<line class="w" x1="150" y1="160" x2="163" y2="160"/>
+<line class="w" x1="163" y1="155" x2="177" y2="146"/><line class="w" x1="177" y1="146" x2="177" y2="120"/>
+<line class="w" x1="163" y1="165" x2="177" y2="174"/><line class="w" x1="177" y1="174" x2="177" y2="205"/>
+<text class="lb" x="140" y="140">Q1</text>
+<!-- Q2 -->
+<circle class="w" cx="250" cy="160" r="17"/><line class="w" x1="243" y1="151" x2="243" y2="169"/>
+<line class="w" x1="230" y1="160" x2="243" y2="160"/>
+<line class="w" x1="243" y1="155" x2="257" y2="146"/><line class="w" x1="257" y1="146" x2="257" y2="120"/>
+<line class="w" x1="243" y1="165" x2="257" y2="174"/><line class="w" x1="257" y1="174" x2="257" y2="205"/>
+<text class="lb" x="262" y="140">Q2</text>
+<text class="vl" x="150" y="118">input LTP (long-tailed pair)</text>
+<!-- tail current source -->
+<line class="w" x1="177" y1="205" x2="257" y2="205"/><line class="w" x1="217" y1="205" x2="217" y2="228"/>
+<circle class="w" cx="217" cy="243" r="15"/><path class="f" d="M217 234 l6 12 h-12 z"/><text class="vl" x="235" y="247">I_tail</text>
+<line class="w" x1="217" y1="258" x2="217" y2="436"/>
+<!-- LTP output to VAS base -->
+<line class="w" x1="150" y1="160" x2="150" y2="285"/><line class="w" x1="150" y1="285" x2="333" y2="285"/>
+<!-- VAS current-source load -->
+<circle class="w" cx="360" cy="120" r="15"/><path class="f" d="M360 129 l6 -12 h-12 z"/><text class="vl" x="378" y="124">I2 load</text>
+<line class="w" x1="360" y1="34" x2="360" y2="105"/>
+<!-- Q3 VAS -->
+<circle class="w" cx="360" cy="285" r="17"/><line class="w" x1="353" y1="276" x2="353" y2="294"/>
+<line class="w" x1="333" y1="285" x2="353" y2="285"/>
+<line class="w" x1="353" y1="280" x2="367" y2="271"/><line class="w" x1="367" y1="271" x2="367" y2="135"/>
+<line class="w" x1="353" y1="290" x2="367" y2="299"/><line class="w" x1="367" y1="299" x2="367" y2="360"/>
+<text class="lb" x="330" y="330">Q3 · VAS</text>
+<!-- emitter degeneration -->
+<rect class="w" x="360" y="360" width="14" height="34"/><text class="vl" x="378" y="382">Rv</text>
+<line class="w" x1="367" y1="394" x2="367" y2="436"/>
+<!-- Miller cap -->
+<line class="w" x1="367" y1="200" x2="410" y2="200"/><line class="w" x1="410" y1="188" x2="410" y2="212"/><line class="w" x1="422" y1="188" x2="422" y2="212"/>
+<line class="w" x1="422" y1="200" x2="322" y2="200"/><line class="w" x1="322" y1="200" x2="322" y2="285"/><line class="w" x1="322" y1="285" x2="343" y2="285"/>
+<text class="vl" x="384" y="182">Cm (Miller)</text>
+<!-- VAS collector to output-stage top base node NT -->
+<line class="w" x1="367" y1="150" x2="560" y2="150"/><circle class="nd" cx="560" cy="150" r="3"/>
+<!-- Vbe multiplier bias -->
+<rect class="w" x="470" y="210" width="60" height="60" rx="6"/><text class="lb" x="476" y="235">Vbe</text><text class="lb" x="476" y="251">mult.</text>
+<line class="w" x1="560" y1="150" x2="560" y2="210"/><line class="w" x1="500" y1="210" x2="500" y2="150"/><line class="w" x1="500" y1="150" x2="560" y2="150"/>
+<line class="w" x1="500" y1="270" x2="500" y2="330"/><line class="w" x1="500" y1="330" x2="560" y2="330"/><circle class="nd" cx="560" cy="330" r="3"/>
+<text class="vl" x="470" y="292">sets Iq · thermal track</text>
+<!-- Q5 NPN output (top) -->
+<circle class="w" cx="600" cy="130" r="17"/><line class="w" x1="593" y1="121" x2="593" y2="139"/>
+<line class="w" x1="560" y1="150" x2="560" y2="130"/><line class="w" x1="560" y1="130" x2="593" y2="130"/>
+<line class="w" x1="593" y1="125" x2="607" y2="116"/><line class="w" x1="607" y1="116" x2="607" y2="34"/>
+<line class="w" x1="593" y1="135" x2="607" y2="144"/><line class="w" x1="607" y1="144" x2="607" y2="185"/>
+<text class="lb" x="618" y="120">Q5 npn</text>
+<rect class="w" x="600" y="185" width="14" height="30"/><text class="vl" x="620" y="204">Re</text>
+<!-- Q6 PNP output (bottom) -->
+<circle class="w" cx="600" cy="340" r="17"/><line class="w" x1="593" y1="331" x2="593" y2="349"/>
+<line class="w" x1="560" y1="330" x2="560" y2="340"/><line class="w" x1="560" y1="340" x2="593" y2="340"/>
+<line class="w" x1="593" y1="335" x2="607" y2="326"/><line class="w" x1="607" y1="326" x2="607" y2="285"/>
+<line class="w" x1="593" y1="345" x2="607" y2="354"/><line class="w" x1="607" y1="354" x2="607" y2="436"/>
+<text class="lb" x="618" y="348">Q6 pnp</text>
+<rect class="w" x="600" y="255" width="14" height="30"/><text class="vl" x="620" y="274">Re</text>
+<!-- output node -->
+<line class="w" x1="607" y1="215" x2="607" y2="255"/><circle class="nd" cx="607" cy="235" r="3.5"/>
+<line class="w" x1="607" y1="235" x2="650" y2="235"/>
+<line class="w" x1="650" y1="223" x2="650" y2="247"/><line class="w" x1="662" y1="223" x2="662" y2="247"/><text class="vl" x="642" y="263">Cout</text>
+<line class="w" x1="662" y1="235" x2="700" y2="235"/>
+<circle class="w" cx="712" cy="235" r="12"/><path class="w" d="M700 227 l0 16 M712 223 l0 24"/><text class="lb" x="700" y="278">RL</text>
+<!-- feedback -->
+<line class="w" x1="607" y1="235" x2="607" y2="405"/><line class="w" x1="607" y1="405" x2="300" y2="405"/>
+<rect class="w" x="300" y="398" width="34" height="14"/><text class="vl" x="300" y="392">Rf</text>
+<line class="w" x1="300" y1="405" x2="230" y2="405"/><line class="w" x1="230" y1="405" x2="230" y2="160"/>
+<rect class="w" x="223" y="405" width="14" height="30"/><text class="vl" x="200" y="426">Rg</text>
+</svg>`;
+
+const SVG_ROBOT = `
+<svg viewBox="0 0 760 440" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" role="img" aria-label="Autonomous robot wiring schematic">
+<style>
+ .w{stroke:#2B2130;stroke-width:1.5;fill:none}
+ .box{fill:#FFFFFF;stroke:#C2255C;stroke-width:1.6}
+ .bx2{fill:#FDF2F7;stroke:#EBB8CE;stroke-width:1.4}
+ .t{fill:#2B2130;font-size:12px}
+ .tb{fill:#9C1E4B;font-size:12.5px;font-weight:700}
+ .v{fill:#7A6B75;font-size:10px}
+ .f{fill:#2B2130}
+</style>
+<!-- MCU -->
+<rect class="box" x="300" y="150" width="160" height="150" rx="10"/>
+<text class="tb" x="316" y="178">Arduino Nano</text><text class="tb" x="316" y="194">ESP32</text>
+<text class="v" x="316" y="212">240 MHz dual-core</text>
+<!-- MCU pin labels -->
+<text class="v" x="306" y="238">A0</text><text class="v" x="306" y="258">A1</text>
+<text class="v" x="306" y="285">D2/D3</text>
+<text class="v" text-anchor="end" x="454" y="238">D5 ENA</text>
+<text class="v" text-anchor="end" x="454" y="255">D6 ENB</text>
+<text class="v" text-anchor="end" x="454" y="272">D7-10</text>
+<text class="v" text-anchor="end" x="454" y="289">IN1-4</text>
+<!-- LDR dividers (left) -->
+<rect class="bx2" x="40" y="150" width="150" height="130" rx="8"/>
+<text class="tb" x="52" y="172">Line sensor head</text>
+<text class="v" x="52" y="190">2× LDR + LED · ±35 mm</text>
+<!-- divider L -->
+<line class="w" x1="70" y1="205" x2="70" y2="225"/><rect class="w" x="63" y="205" width="14" height="8"/><text class="v" x="82" y="212">LDR_L</text>
+<circle class="f" cx="70" cy="228" r="2.5"/><line class="w" x1="70" y1="228" x2="70" y2="248"/><rect class="w" x="63" y="248" width="14" height="20"/><text class="v" x="82" y="262">R</text>
+<line class="w" x1="70" y1="268" x2="70" y2="282"/><path class="w" d="M62 282 h16 M65 286 h10 M68 290 h4"/>
+<line class="w" x1="70" y1="228" x2="230" y2="228"/><text class="v" x="150" y="223">→ A0</text>
+<line class="w" x1="230" y1="228" x2="300" y2="232"/>
+<!-- divider R -->
+<line class="w" x1="140" y1="205" x2="140" y2="225"/><rect class="w" x="133" y="205" width="14" height="8"/><text class="v" x="152" y="212">LDR_R</text>
+<circle class="f" cx="140" cy="228" r="2.5"/><line class="w" x1="140" y1="228" x2="140" y2="248"/><rect class="w" x="133" y="248" width="14" height="20"/>
+<line class="w" x1="140" y1="268" x2="140" y2="282"/><path class="w" d="M132 282 h16 M135 286 h10 M138 290 h4"/>
+<line class="w" x1="140" y1="228" x2="140" y2="252"/><line class="w" x1="140" y1="252" x2="250" y2="252"/><text class="v" x="180" y="247">→ A1</text>
+<line class="w" x1="250" y1="252" x2="300" y2="252"/>
+<!-- HC-SR04 (top) -->
+<rect class="bx2" x="300" y="50" width="160" height="56" rx="8"/>
+<text class="tb" x="316" y="74">HC-SR04</text><text class="v" x="316" y="92">ultrasonic · TRIG/ECHO</text>
+<line class="w" x1="360" y1="106" x2="360" y2="150"/><text class="v" x="366" y="130">TRIG/ECHO</text>
+<line class="w" x1="400" y1="106" x2="400" y2="150"/>
+<!-- L298N (right) -->
+<rect class="box" x="560" y="150" width="150" height="120" rx="10"/>
+<text class="tb" x="574" y="178">L298N</text><text class="v" x="574" y="196">dual H-bridge</text><text class="v" x="574" y="212">PWM speed ctrl</text>
+<line class="w" x1="460" y1="238" x2="560" y2="200"/>
+<line class="w" x1="460" y1="272" x2="560" y2="230"/>
+<text class="v" x="486" y="228">ENA/ENB · IN1-4</text>
+<!-- motors -->
+<line class="w" x1="710" y1="180" x2="740" y2="180"/><circle class="box" cx="736" cy="180" r="15"/><text class="v" x="722" y="165">M_L</text><text class="t" x="731" y="184">M</text>
+<line class="w" x1="710" y1="240" x2="740" y2="240"/><circle class="box" cx="736" cy="240" r="15"/><text class="v" x="722" y="272">M_R</text><text class="t" x="731" y="244">M</text>
+<!-- battery -->
+<rect class="bx2" x="300" y="340" width="160" height="52" rx="8"/><text class="tb" x="316" y="364">Battery pack</text><text class="v" x="316" y="382">7.4 V → L298N Vs · 5 V logic</text>
+<line class="w" x1="380" y1="300" x2="380" y2="340"/><text class="v" x="386" y="322">Vin</text>
+<line class="w" x1="460" y1="360" x2="635" y2="360"/><line class="w" x1="635" y1="360" x2="635" y2="270"/><text class="v" x="500" y="355">Vs (motor supply)</text>
+<!-- flow caption blocks -->
+<text class="v" x="40" y="418">SENSE → reflected-light error + time-of-flight range</text>
+<text class="v" x="470" y="418">COMPUTE e = R_LDR − L_LDR , out = kp·e  → ACTUATE</text>
+</svg>`;
+
+/* ===== project data ===== */
+const projects = [
+{
+ num:"Project 01", cat:["analogue"], badge:null,
+ title:"PCB Audio Amplifier: Class-AB, Schematic to Manufacturable Board",
+ tools:["KiCad","LTSpice"],
+ summary:"A class-AB audio power amplifier designed from first principles and carried through the complete professional PCB flow, ending in fabrication-ready Gerbers.",
+ svg:SVG_AMP,
+ svgcap:"<b>Fig. 1: Class-AB power amplifier (Lin three-stage topology).</b> Long-tailed input pair with current-mirror load, common-emitter voltage-amplifier stage (VAS) with Miller compensation Cm, V<sub>BE</sub>-multiplier bias network, and a complementary emitter-follower output pair (Q5/Q6) with emitter-degeneration resistors R<sub>e</sub>. Global negative feedback R<sub>f</sub>/R<sub>g</sub> sets closed-loop gain.",
+ sections:[
+ ["Overview","Complete design of a class-AB audio power amplifier: first-principles circuit design through to a fully routed, manufacturable PCB. The goal was end-to-end fluency in the professional design flow: schematic capture, simulation-led verification, component selection, footprint assignment, analogue-aware layout, and fabrication outputs."],
+ ["Design Rationale","Class-AB was selected as the engineering compromise between class-A linearity and class-B efficiency. Biasing the complementary output devices slightly into conduction suppresses crossover distortion while avoiding class-A's quiescent dissipation: demanding careful attention to bias-network stability and output-stage thermal behaviour."],
+ ["Implementation",["<b>Schematic capture:</b> input stage, voltage-gain stage, bias network, and complementary output stage captured hierarchically in KiCad with consistent net naming.","<b>Simulation:</b> full signal path modelled in LTSpice pre-layout to verify gain, bandwidth, biasing, and crossover behaviour.","<b>Components &amp; footprints:</b> real, sourceable parts with appropriate voltage/current/power ratings; footprints verified against manufacturer land patterns.","<b>Layout:</b> short, direct audio traces; separation of small-signal and power sections; considered grounding with a copper pour for low-impedance return and thermal spreading.","<b>Manufacturing:</b> passed full DRC; industry-standard Gerber and drill files exported, ready for any commercial fab."]],
+ ["Outcomes","A fabrication-ready amplifier and working command of the schematic-to-Gerber workflow: analogue design, SPICE pre-layout verification, footprint/library management, analogue layout discipline, and manufacturing documentation to industry standard."]
+ ],
+ adv:[
+ ["Topology &amp; Signal Path","The amplifier follows the classical Lin three-stage architecture. Stage&nbsp;1 is a differential long-tailed pair (LTP) fed from a tail current source, converting the differential input–feedback voltage to a current with high common-mode rejection; a current-mirror active load doubles the transconductance and performs the differential-to-single-ended conversion. Stage&nbsp;2 is a common-emitter voltage-amplifier stage (VAS) driven from a constant-current load, providing the bulk of the open-loop voltage gain. Stage&nbsp;3 is a complementary emitter-follower (class-AB) output providing current gain at near-unity voltage gain. Global negative feedback closes the loop from the output back to the inverting LTP input."],
+ ["Closed-Loop Gain &amp; Feedback","Closed-loop voltage gain is set by the feedback divider:","<div class='eq'>A<sub>v</sub> = 1 + R<sub>f</sub> / R<sub>g</sub></div>","With large open-loop gain A<sub>OL</sub>, the loop gain T = A<sub>OL</sub>·β (β = R<sub>g</sub>/(R<sub>f</sub>+R<sub>g</sub>)) drives distortion, output impedance and gain error down by a factor of roughly (1+T). The DC feedback path also fixes the output at the mid-rail operating point, so the LTP inputs sit at the same DC potential."],
+ ["Bias Network &amp; Crossover","A V<sub>BE</sub>-multiplier sets the quiescent voltage across the output-pair bases so both devices idle slightly in conduction, eliminating the dead-zone that causes class-B crossover distortion:","<div class='eq'>V<sub>bias</sub> = V<sub>BE</sub>·(1 + R2/R1) ≈ 2·V<sub>BE</sub> + 2·I<sub>q</sub>·R<sub>e</sub></div>","The quiescent current I<sub>q</sub> (tens of mA) is a deliberate linearity/dissipation trade-off. Emitter-degeneration resistors R<sub>e</sub> (~0.22–0.47&nbsp;Ω) linearise the transfer characteristic and, critically, give the output stage a positive local feedback that stabilises I<sub>q</sub> against temperature. Mounting the bias transistor on the output-device heatsink provides thermal tracking to prevent thermal runaway."],
+ ["Stability &amp; Compensation","Dominant-pole (Miller) compensation with C<sub>m</sub> across the VAS sets the open-loop dominant pole and hence the gain–bandwidth product. Slew rate is bounded by the tail current charging C<sub>m</sub>:","<div class='eq'>SR = I<sub>tail</sub> / C<sub>m</sub>    f<sub>c</sub> ≈ g<sub>m,VAS</sub> / (2π·A<sub>OL</sub>·C<sub>m</sub>)</div>","C<sub>m</sub> is chosen for adequate phase margin (typically &gt;45–60°) at the unity-loop-gain frequency, trading bandwidth for stability against the output-stage and load-capacitance poles."],
+ ["Thermal &amp; SOA","Each output device dissipates worst-case power at roughly half the rail voltage into the load. Quiescent dissipation per device is P<sub>q</sub> = V<sub>CC</sub>·I<sub>q</sub>; heatsink thermal resistance is sized so junction temperature stays inside the safe-operating-area (SOA) at maximum continuous output. This drives the choice of device package and copper-pour area on the board."],
+ ["SPICE Verification","Pre-layout LTSpice covered: <span class='mono'>.op</span> to confirm the quiescent operating point and I<sub>q</sub>; <span class='mono'>.tran</span> on a sine sweep to inspect the transfer characteristic through the crossover region; <span class='mono'>.ac</span> for gain, −3&nbsp;dB bandwidth and phase margin; and <span class='mono'>.four</span> for harmonic-distortion content. Component values were iterated against these results before any footprint was placed."],
+ ["Analogue Layout &amp; Manufacturing",["<b>Grounding:</b> star/partitioned ground separating the high-current output return from the small-signal reference to keep ground-bounce out of the input stage.","<b>Routing:</b> short, direct high-current audio traces sized to IPC-2221 current/temperature-rise guidance; Kelvin sensing across R<sub>e</sub>; small-signal and power sections physically separated.","<b>Thermal &amp; decoupling:</b> copper pour for low-impedance return and heat spreading; local rail decoupling at the output stage.","<b>Outputs:</b> full DRC clean, then Gerber X2 + Excellon drill export: a fab-ready package."]],
+ ["Representative Design Values",`<table class="tbl"><tr><th>Block</th><th>Representative part / value</th></tr><tr><td>Supply rails</td><td>&plusmn;25 V dual, ~40 W into 8 &Omega;</td></tr><tr><td>Input diff pair</td><td>2N5551 / 2N5401 matched complementary pair</td></tr><tr><td>VAS</td><td>2N5551, 100 pF Miller compensation</td></tr><tr><td>Bias</td><td>V<sub>BE</sub> multiplier (2N5551) mounted on the output heatsink</td></tr><tr><td>Output pair</td><td>TIP41C (NPN) / TIP42C (PNP) complementary</td></tr><tr><td>Emitter resistors R<sub>e</sub></td><td>0.22 &Omega;, 5 W</td></tr><tr><td>Quiescent current I<sub>q</sub></td><td>~30 mA per output device</td></tr><tr><td>Closed-loop gain</td><td>&times;23 (27 dB): R<sub>f</sub> 22 k&Omega; / R<sub>g</sub> 1 k&Omega;</td></tr><tr><td>Input impedance</td><td>~22 k&Omega;</td></tr><tr><td>Bandwidth (&minus;3 dB)</td><td>~20 Hz to 50 kHz</td></tr></table><p class="code-cap">Values typical of open-source discrete class-AB designs; final selection follows the SPICE operating point and SOA check. (Details not fixed in the brief are filled with common reference-design choices.)</p>`],
+ ["Simulated AC Response",`<figure class="fig"><svg viewBox="0 0 520 210" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace"><line x1="55" y1="20" x2="55" y2="170" stroke="#EBB8CE"/><line x1="55" y1="170" x2="500" y2="170" stroke="#EBB8CE"/><text x="10" y="72" fill="#7A6B75" font-size="10">30 dB</text><text x="16" y="145" fill="#7A6B75" font-size="10">0 dB</text><text x="58" y="188" fill="#7A6B75" font-size="10">10 Hz</text><text x="250" y="188" fill="#7A6B75" font-size="10">1 kHz</text><text x="452" y="188" fill="#7A6B75" font-size="10">1 MHz</text><line x1="55" y1="83" x2="500" y2="83" stroke="#E64980" stroke-dasharray="4 4"/><path d="M70 150 C112 150 122 84 175 83 L360 83 C420 83 445 120 492 152" fill="none" stroke="#C2255C" stroke-width="2.5"/><text x="330" y="76" fill="#9C1E4B" font-size="10">27 dB passband</text></svg><figcaption><b>Fig. 2: Closed-loop AC response (LTSpice .ac sweep).</b> Flat ~27 dB midband gain set by the feedback divider, rolling off outside roughly 20 Hz to 50 kHz.</figcaption></figure>`],
+ ["SPICE Netlist (representative)",{code:`* Class-AB power amplifier - representative LTSpice netlist (excerpt)
+.include TIP41C.lib
+.include TIP42C.lib
+Vcc vcc 0  25
+Vee vee 0 -25
+Vin in 0  AC 1 SIN(0 20m 1k)
+* --- input long-tailed pair + tail current source ---
+Q1 n1 in te 0 2N5551
+Q2 n2 fb te 0 2N5551
+Itail te vee 2m
+Rc1 vcc n1 10k
+Rc2 vcc n2 10k
+* --- voltage-amplifier stage with Miller compensation ---
+Q3 vas n1 vee 0 2N5551
+Ivas vcc vas 5m
+Cm vas n1 100p
+* --- Vbe multiplier bias (sets Iq) ---
+Q4 vas nb vas 0 2N5551
+Rb1 vas mid 4k7
+Rb2 mid nb 2k2
+* --- complementary emitter-follower output ---
+Q5 vcc vas oe1 0 TIP41C
+Q6 vee nb oe2 0 TIP42C
+Re1 oe1 out 0.22
+Re2 oe2 out 0.22
+* --- global feedback network + AC-coupled load ---
+Rf out fb 22k
+Rg fb 0 1k
+Cout out spk 1000u
+Rload spk 0 8
+.tran 5m
+.ac dec 20 10 1meg
+.four 1k V(spk)
+.end`,cap:"Transistor models pulled from manufacturer .lib files. <span class='mono'>.tran</span> inspects the crossover region, <span class='mono'>.ac</span> gives the response above, and <span class='mono'>.four</span> reports total harmonic distortion at 1 kHz."}],
+ ["Competencies Demonstrated","Analogue circuit design and feedback theory, SPICE-based pre-layout verification (operating point, transient, AC and distortion analysis), thermal design and SOA reasoning, footprint/library management, disciplined analogue PCB layout (grounding, current-aware routing, decoupling), and industry-standard manufacturing documentation."]
+ ]
+},
+{
+ num:"Project 02", cat:["power","analogue"], badge:null,
+ title:"Regulated DC Power Supply: Mains-Derived Linear Supply",
+ tools:["LTSpice","Oscilloscope","Electronic load"],
+ summary:"A four-stage linear supply: transformer, rectifier, smoothing, regulation: designed quantitatively, simulated, then built and bench-characterised against prediction.",
+ sections:[
+ ["Overview","Design, simulation, construction, and characterisation of a complete mains-derived regulated DC supply, providing direct experience of the gap between idealised models and real hardware."],
+ ["Design & Architecture","Step-down transformer for isolation; rectifier; reservoir capacitance sized through the ripple/capacitor-stress/peak-current trade-off; linear regulation rejecting residual ripple. Every stage required quantitative decisions: turns ratio and VA rating, diode PIV and surge ratings, smoothing capacitance, regulator dropout and dissipation: feeding directly into heatsinking."],
+ ["Simulation & Verification",["<b>Transient analysis:</b> peak-to-peak ripple at the reservoir capacitor characterised across load conditions in LTSpice.","<b>Load regulation:</b> output current stepped and voltage deviation observed, refining component values before hardware."]],
+ ["Construction & Bench Testing","The physical circuit was built and tested against simulation: ripple waveforms measured on an oscilloscope and correlated with LTSpice; regulated output verified stable across the intended load range. Mains-derived work enforced disciplined safety practice: isolation, correct fusing, safe probing."],
+ ["Outcomes","Measured ripple and load regulation consistent with simulation. Demonstrates power-electronics fundamentals, quantitative sizing, SPICE transient analysis, simulation-to-hardware correlation, and safe professional lab practice."]
+ ],
+ adv:[
+ ["Power Chain &amp; Quantitative Sizing","Four cascaded stages: step-down transformer → full-wave bridge rectifier → reservoir smoothing → linear regulator. Each interface was sized from first principles rather than picked by rule of thumb."],
+ ["Rectifier &amp; Reservoir","The bridge peak, allowing for two diode drops, and the reservoir ripple for a given load current and mains frequency are:","<div class='eq'>V<sub>pk</sub> = √2·V<sub>sec</sub> − 2·V<sub>F</sub>    V<sub>ripple(pp)</sub> ≈ I<sub>load</sub> / (2·f<sub>mains</sub>·C)</div>","The reservoir capacitance is chosen from the maximum tolerable ripple; the same value fixes the capacitor RMS ripple-current rating and the rectifier's repetitive peak current, since the capacitor recharges only near each mains peak in a short, tall conduction pulse."],
+ ["Diode Ratings","Diodes were selected for repetitive peak inverse voltage and non-repetitive surge current at switch-on inrush:","<div class='eq'>PIV ≥ 2·√2·V<sub>sec</sub>     I<sub>FSM</sub> ≥ inrush at cold C</div>"],
+ ["Regulator Headroom &amp; Dissipation","The regulator needs enough instantaneous input headroom at the ripple trough to stay in regulation, and it dissipates the voltage difference times the load current:","<div class='eq'>V<sub>in,min</sub> = V<sub>out</sub> + V<sub>dropout</sub> + ½V<sub>ripple(pp)</sub></div><div class='eq'>P<sub>reg</sub> = (V<sub>in</sub> − V<sub>out</sub>)·I<sub>out</sub></div>","This dissipation drove the heatsink sizing so the junction stays below its maximum:","<div class='eq'>θ<sub>sa</sub> ≤ (T<sub>j,max</sub> − T<sub>a</sub>)/P<sub>reg</sub> − θ<sub>jc</sub> − θ<sub>cs</sub></div>"],
+ ["Simulation","LTSpice <span class='mono'>.tran</span> characterised reservoir ripple versus load and the regulator's ripple rejection (PSRR) at the output; a stepped-current test quantified load regulation. Values were refined in simulation before committing hardware."],
+ ["Bench Characterisation","On the bench, oscilloscope ripple waveforms were correlated against the LTSpice predictions; load regulation (%ΔV<sub>out</sub> across the current range) and line stability were measured with a DMM and electronic load. Because the front end is mains-derived, the build enforced isolation, correct fusing and safe single-hand probing."],
+ ["Worked Design Example (representative)",`<table class="tbl"><tr><th>Stage</th><th>Value / part</th></tr><tr><td>Target output</td><td>12 V DC, 1 A</td></tr><tr><td>Transformer</td><td>230:12 V<sub>rms</sub>, 15 VA, ~50 Hz</td></tr><tr><td>Rectifier</td><td>Full bridge, 4&times; 1N4007 (1000 V PIV, 1 A)</td></tr><tr><td>Peak after bridge</td><td>V<sub>pk</sub> = &radic;2&middot;12 &minus; 2&middot;0.7 &asymp; 15.6 V</td></tr><tr><td>Reservoir C</td><td>10,000 &micro;F &rarr; V<sub>ripple</sub> &asymp; 1 / (2&middot;50&middot;0.01) = 1 V<sub>pp</sub></td></tr><tr><td>Regulator</td><td>LM7812 (fixed) or LM317 (adjustable), ~2 V dropout</td></tr><tr><td>Headroom check</td><td>trough 14.6 V &gt; 12 + 2 + 0.5 = 14.5 V &check;</td></tr><tr><td>Dissipation</td><td>P = (15.1 &minus; 12)&middot;1 &asymp; 3.1 W &rarr; heatsink ~10 K/W</td></tr></table><p class="code-cap">Representative values consistent with the report's design method; component ratings and margins are the standard reference-design choices for a 12 V / 1 A linear supply.</p>`],
+ ["Simulated Reservoir Ripple",`<figure class="fig"><svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace"><line x1="50" y1="18" x2="50" y2="165" stroke="#EBB8CE"/><line x1="50" y1="165" x2="500" y2="165" stroke="#EBB8CE"/><text x="8" y="52" fill="#7A6B75" font-size="10">15.6V</text><text x="10" y="86" fill="#7A6B75" font-size="10">14.6V</text><text x="14" y="120" fill="#7A6B75" font-size="10">12V</text><path d="M55 48 L95 78 Q100 80 108 50 L150 80 Q155 82 163 50 L205 80 Q210 82 218 50 L260 80 Q265 82 273 50 L315 80 Q320 82 328 50 L370 80 Q375 82 383 50 L425 80 Q430 82 438 50 L480 80" fill="none" stroke="#C2255C" stroke-width="2"/><line x1="55" y1="114" x2="490" y2="114" stroke="#2f9e44" stroke-width="2.5"/><text x="300" y="108" fill="#2f9e44" font-size="10">regulated 12 V out</text><text x="300" y="44" fill="#9C1E4B" font-size="10">reservoir ripple ~1 Vpp</text></svg><figcaption><b>Fig. 2: LTSpice transient: reservoir-capacitor ripple vs. the flat regulated output.</b> The regulator rejects the residual ripple; measured scope ripple was correlated against this prediction on the bench.</figcaption></figure>`],
+ ["SPICE Netlist (representative)",{code:`* Regulated linear supply - representative LTSpice netlist
+* full-wave bridge + reservoir + 3-terminal regulator model
+Vsec a 0 SIN(0 17 50)   ; 12 Vrms secondary (17 V peak)
+D1 a p D ; D2 0 p D ; D3 n a D ; D4 n 0 D
+.model D D(Is=1n Rs=0.02)
+Cres p n 10000u ic=15
+Rbleed p n 10k
+* --- regulator (behavioural 12 V, 2 V dropout) ---
+B1 p reg V=min(V(p)-2, 12)
+Rout reg out 0.1
+* --- load step to check regulation ---
+Iload out 0 PULSE(0.1 1 20m 1u 1u 40m 80m)
+.tran 200m
+.meas Tran Vpp PP V(p)
+.meas Tran Vreg AVG V(out)
+.end`,cap:"A behavioural regulator block keeps the netlist compact; the bench build used a real LM7812/LM317. The load-step <span class='mono'>PULSE</span> source quantifies load regulation."}],
+ ["Competencies Demonstrated","Power-electronics fundamentals, quantitative component sizing (capacitor ripple, diode PIV/surge, regulator dissipation and thermal design), SPICE transient/PSRR analysis, simulation-to-hardware correlation, systematic bench characterisation, and safe practice with mains-derived circuits."]
+ ]
+},
+{
+ num:"Project 03", cat:["embedded"], badge:null,
+ title:"Bare-Metal UART / I2C / SPI Drivers: STM32 Cortex-M",
+ tools:["C","STM32","Oscilloscope","Logic analyser"],
+ summary:"Register-level peripheral drivers for the three core embedded buses, written with no HAL and verified electrically: on the wire, not just in software.",
+ sections:[
+ ["Overview","Bare-metal C drivers for UART, I2C, and SPI on an STM32 Cortex-M: no HAL, no vendor libraries. All configuration and data transfer implemented through direct register-level programming, guided solely by the device reference manual."],
+ ["Motivation & Approach","Vendor HALs conceal hardware behaviour, limiting understanding and low-level debugging. Working bare-metal meant interpreting register maps directly: enabling clocks via RCC, configuring GPIO alternate functions, and programming each peripheral's control, status, and data registers."],
+ ["Implementation",["<b>UART:</b> asynchronous TX/RX with baud generation from the peripheral clock, frame configuration (data bits, parity, stop bits), and status-flag-driven routines.","<b>I2C:</b> full master transaction sequence: start, 7-bit addressing with R/W bit, ACK handling, data phase, stop: exercised against external slave ICs.","<b>SPI:</b> full-duplex master with CPOL/CPHA configuration, manual chip-select management, byte-level exchange.","<b>Integration:</b> every driver proven against real external ICs on shared buses, not loopback alone."]],
+ ["Verification & Debugging","Correctness was established at the electrical level: oscilloscope for signal integrity, levels, and clock timing; logic analyser to capture and decode complete transactions: baud and framing on UART, address/ACK sequencing on I2C, clock-phase alignment on SPI. Instrument-led debugging separated firmware faults from wiring and configuration faults decisively."],
+ ["Outcomes","Working, reusable register-level drivers and wire-level understanding of embedded protocols. Demonstrates embedded C, reference-manual-driven development, and professional instrument-based debugging."]
+ ],
+ adv:[
+ ["Bring-up: Clock &amp; GPIO","Every peripheral bring-up begins in the RCC: the peripheral clock is enabled in the appropriate bus register (<span class='mono'>RCC-&gt;AHB1ENR</span> for GPIO, <span class='mono'>RCC-&gt;APB1ENR/APB2ENR</span> for the serial peripherals). GPIO pins are then switched to alternate-function mode via <span class='mono'>MODER</span>, with the specific peripheral function selected in the <span class='mono'>AFR[ ]</span> (alternate-function low/high) registers, plus <span class='mono'>OSPEEDR</span>, <span class='mono'>OTYPER</span> (open-drain for I2C) and <span class='mono'>PUPDR</span> as required."],
+ ["UART Driver","Baud rate is programmed by writing the mantissa/fraction divider derived from the peripheral clock:","<div class='eq'>USARTDIV = f<sub>CK</sub> / (16 · baud)  → BRR</div>","The word length, parity and stop bits are set in <span class='mono'>CR1</span>/<span class='mono'>CR2</span>, then the transmitter/receiver enabled (<span class='mono'>UE</span>, <span class='mono'>TE</span>, <span class='mono'>RE</span>). Blocking TX/RX polls the status flags: wait on <span class='mono'>TXE</span> before writing <span class='mono'>DR</span>, wait on <span class='mono'>RXNE</span> before reading: with <span class='mono'>ORE/FE/PE</span> checked for error recovery."],
+ ["I2C Driver","A full 7-bit master write/read sequence was implemented against the reference-manual state machine: set <span class='mono'>START</span>, wait <span class='mono'>SB</span>; write the address+R/W to <span class='mono'>DR</span>, wait <span class='mono'>ADDR</span>, clear by reading <span class='mono'>SR1</span>/<span class='mono'>SR2</span>; transfer data bytes polling <span class='mono'>TXE</span>/<span class='mono'>RXNE</span> with correct <span class='mono'>ACK</span>/<span class='mono'>NACK</span> on the final byte; then <span class='mono'>STOP</span>. Bus timing (<span class='mono'>CCR</span>, <span class='mono'>TRISE</span>) was set for standard/fast mode. Open-drain lines with pull-ups were verified for correct rise time."],
+ ["SPI Driver","Configured as full-duplex master in <span class='mono'>CR1</span>: clock polarity/phase (<span class='mono'>CPOL</span>/<span class='mono'>CPHA</span>) matched to each slave's datasheet mode, baud prescaler (<span class='mono'>BR</span>), MSB-first, master (<span class='mono'>MSTR</span>). Chip-select is managed manually as a GPIO. Byte exchange writes <span class='mono'>DR</span> and reads it back after <span class='mono'>RXNE</span>, using <span class='mono'>BSY</span> to fence the final CS de-assertion."],
+ ["Instrument-Led Verification","Correctness was proven on the wire: an oscilloscope checked logic levels, edge quality and clock timing; a logic analyser decoded whole transactions: measured baud and framing on UART, address/ACK sequencing on I2C, and CPOL/CPHA edge alignment on SPI. This cleanly separated firmware bugs from wiring or slave-configuration faults, which is the entire point of working bare-metal."],
+ ["Pin Map &amp; Configuration",`<table class="tbl"><tr><th>Peripheral</th><th>Pins</th><th>Configuration</th></tr><tr><td>USART2</td><td>PA2 TX / PA3 RX</td><td>AF7, 115200 8N1, TXE/RXNE polling</td></tr><tr><td>I2C1</td><td>PB6 SCL / PB7 SDA</td><td>AF4, open-drain + pull-ups, 100 kHz</td></tr><tr><td>SPI1</td><td>PA5 SCK / PA6 MISO / PA7 MOSI</td><td>AF5, mode 0, f<sub>PCLK</sub>/16, software NSS</td></tr></table><p class="code-cap">Target: STM32F4 Cortex-M4 at 16 MHz HSI (representative; the method is identical across STM32 families). Pin choices follow the common Nucleo/Discovery reference mappings.</p>`],
+ ["I2C Transaction Decode",`<figure class="fig"><svg viewBox="0 0 520 120" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" font-size="11"><g stroke="#2B2130" stroke-width="1.2"><rect x="20" y="40" width="26" height="34" fill="#E64980"/><rect x="46" y="40" width="150" height="34" fill="#FCE7F1"/><rect x="196" y="40" width="34" height="34" fill="#FDF2F7"/><rect x="230" y="40" width="34" height="34" fill="#EBB8CE"/><rect x="264" y="40" width="150" height="34" fill="#FCE7F1"/><rect x="414" y="40" width="34" height="34" fill="#EBB8CE"/><rect x="448" y="40" width="26" height="34" fill="#E64980"/></g><g fill="#2B2130" text-anchor="middle"><text x="33" y="62" fill="#fff">S</text><text x="121" y="62">A6..A0</text><text x="213" y="62">R/W</text><text x="247" y="62">ACK</text><text x="339" y="62">D7..D0</text><text x="431" y="62">ACK</text><text x="461" y="62" fill="#fff">P</text></g><g fill="#7A6B75" text-anchor="middle" font-size="9"><text x="33" y="90">start</text><text x="121" y="90">7-bit address</text><text x="339" y="90">data byte</text><text x="461" y="90">stop</text></g></svg><figcaption><b>Fig. 2: Logic-analyser decode of a single-byte I2C write.</b> Start, 7-bit address + R/W, slave ACK, data byte, ACK, stop: each field verified against the firmware state machine below.</figcaption></figure>`],
+ ["Register-Level Driver Code (STM32F4)",{code:`#include "stm32f4xx.h"  /* CMSIS device header */
+
+/* ---- UART: USART2 on PA2 (TX) / PA3 (RX), 115200 @ 16 MHz ---- */
+void uart2_init(void){
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+  RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
+  GPIOA->MODER |= (2u<<(2*2)) | (2u<<(2*3));  /* alternate function */
+  GPIOA->AFR[0] |= (7u<<(4*2)) | (7u<<(4*3));  /* AF7 = USART2   */
+  USART2->BRR = 16000000u / 115200u;       /* baud divider   */
+  USART2->CR1 = USART_CR1_TE | USART_CR1_RE | USART_CR1_UE;
+}
+void uart2_putc(uint8_t c){
+  while(!(USART2->SR & USART_SR_TXE));      /* wait TX empty   */
+  USART2->DR = c;
+}
+
+/* ---- I2C1 master on PB6 (SCL) / PB7 (SDA), 100 kHz ---- */
+void i2c1_init(void){
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
+  RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
+  GPIOB->MODER |= (2u<<(2*6)) | (2u<<(2*7));   /* AF mode    */
+  GPIOB->OTYPER |= (1u<<6) | (1u<<7);       /* open-drain   */
+  GPIOB->AFR[0] |= (4u<<(4*6)) | (4u<<(4*7));   /* AF4 = I2C1   */
+  I2C1->CR2  = 16;    /* peripheral clock = 16 MHz */
+  I2C1->CCR  = 80;    /* Thigh = Tlow = 80/16MHz -> 100 kHz */
+  I2C1->TRISE = 17;    /* max rise time + 1 */
+  I2C1->CR1 |= I2C_CR1_PE;
+}
+void i2c1_write(uint8_t addr, uint8_t reg, uint8_t val){
+  while(I2C1->SR2 & I2C_SR2_BUSY);
+  I2C1->CR1 |= I2C_CR1_START;
+  while(!(I2C1->SR1 & I2C_SR1_SB));        /* start sent   */
+  I2C1->DR = (addr << 1);             /* address + W  */
+  while(!(I2C1->SR1 & I2C_SR1_ADDR));
+  (void)I2C1->SR2;                 /* clear ADDR   */
+  I2C1->DR = reg; while(!(I2C1->SR1 & I2C_SR1_TXE));
+  I2C1->DR = val; while(!(I2C1->SR1 & I2C_SR1_BTF));
+  I2C1->CR1 |= I2C_CR1_STOP;
+}
+
+/* ---- SPI1 master on PA5/6/7, mode 0 ---- */
+void spi1_init(void){
+  RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+  RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
+  GPIOA->MODER |= (2u<<(2*5))|(2u<<(2*6))|(2u<<(2*7));
+  GPIOA->AFR[0] |= (5u<<(4*5))|(5u<<(4*6))|(5u<<(4*7)); /* AF5 = SPI1 */
+  SPI1->CR1 = SPI_CR1_MSTR | SPI_CR1_SSM | SPI_CR1_SSI
+       | (3u<<3);         /* fPCLK/16; CPOL=CPHA=0 (mode 0) */
+  SPI1->CR1 |= SPI_CR1_SPE;
+}
+uint8_t spi1_xfer(uint8_t d){
+  while(!(SPI1->SR & SPI_SR_TXE));
+  SPI1->DR = d;
+  while(!(SPI1->SR & SPI_SR_RXNE));
+  return (uint8_t)SPI1->DR;
+}`,cap:"Representative register-level implementation (STM32F4). No HAL: every access is a direct register write derived from the reference manual. The exact register bits differ per family but the bring-up sequence: RCC clock, GPIO alternate function, peripheral config, flag-driven transfer: is identical."}],
+ ["Competencies Demonstrated","Embedded C, reference-manual-driven register programming on ARM Cortex-M, serial-protocol theory and timing, peripheral bring-up (clock tree, GPIO alternate functions), and professional debugging with oscilloscopes and logic analysers."]
+ ]
+},
+{
+ num:"Project 04", cat:["digital"], badge:null,
+ title:"FPGA Processor Core: RISC-V Instruction Subset in VHDL",
+ tools:["VHDL","EDA Playground","FPGA board"],
+ summary:"A soft-core processor executing a RISC-V subset: fetch–decode–execute pipeline, register file, and ALU, verified in simulation and running on real hardware.",
+ sections:[
+ ["Overview","Design and implementation of a simple processor core in VHDL, deployed to an FPGA development board and executing a subset of the open RISC-V ISA: covering fetch, decode, execute, a general-purpose register file, and an ALU."],
+ ["Architecture & Design",["<b>Fetch:</b> program counter addressing instruction memory, retrieving 32-bit instruction words with sequential advance and control-flow redirection.","<b>Decode:</b> combinational extraction of opcode, register fields, and immediates from each RISC-V format, generating datapath control signals.","<b>Execute:</b> ALU performing the arithmetic/logical operations of the supported subset with write-back to the register file.","<b>Register file:</b> multi-port bank: two read ports, one write port per cycle: with x0 hardwired to zero per the specification."]],
+ ["Verification","Two complementary stages: RTL simulation with testbenches in EDA Playground, inspecting waveforms cycle-by-cycle for instruction sequencing, register-file behaviour, and ALU results; then hand-written RISC-V assembly test programs loaded into instruction memory, verifying architecturally correct end-state. The design was synthesised and demonstrated on the FPGA board."],
+ ["Outcomes","A functioning soft-core and implementation-level understanding of how an ISA maps onto digital hardware: RTL design in VHDL, datapath/control architecture, the RISC-V ISA, testbench-driven verification, and the synthesis/deployment flow."]
+ ],
+ adv:[
+ ["ISA Subset &amp; Instruction Formats","The core targets the RV32I integer base. Decode handles the fixed-field encoding common to all formats: opcode <span class='mono'>[6:0]</span>, <span class='mono'>rd[11:7]</span>, <span class='mono'>funct3[14:12]</span>, <span class='mono'>rs1[19:15]</span>, <span class='mono'>rs2[24:20]</span>, <span class='mono'>funct7[31:25]</span>: and reconstructs the immediates for each type:","<table class='tbl'><tr><th>Format</th><th>Example ops</th><th>Immediate</th></tr><tr><td>R</td><td>ADD, SUB, AND, OR, XOR, SLT, SLL, SRL</td><td>: </td></tr><tr><td>I</td><td>ADDI, ANDI, LW, JALR</td><td>imm[11:0] sign-ext</td></tr><tr><td>S</td><td>SW</td><td>imm[11:5|4:0]</td></tr><tr><td>B</td><td>BEQ, BNE</td><td>imm[12|10:5|4:1|11]</td></tr><tr><td>U/J</td><td>LUI, JAL</td><td>upper / 20-bit</td></tr></table>"],
+ ["Datapath","The classical fetch/decode/execute datapath: a program counter addresses instruction memory; the fetched word is decoded combinationally into control signals; the register file presents two source operands; the ALU computes; and the result (or loaded data / return address) is written back. The PC advances by 4 or is redirected by a taken branch/jump target computed from the sign-extended immediate."],
+ ["Register File &amp; ALU","The register file is a 32×32-bit bank with two asynchronous read ports and one synchronous write port per cycle; <span class='mono'>x0</span> is hardwired to zero: reads return 0 and writes are discarded, exactly per the spec. The ALU implements add/subtract (shared adder with a carry-in for two's-complement subtract), bitwise AND/OR/XOR, set-less-than (signed/unsigned), and logical/arithmetic shifts, with a zero flag feeding the branch-decision logic."],
+ ["VHDL Implementation","Sequential elements (PC, register file write, any state) are captured in clocked processes with synchronous reset; the decoder and ALU are pure combinational processes with complete sensitivity and no inferred latches. Instruction memory is initialised from a program image so hand-assembled test code can be loaded directly."],
+ ["Verification Strategy","Verification ran on two levels. Self-checking testbenches in EDA Playground drove directed stimulus and inspected waveforms cycle-by-cycle: instruction sequencing, register-file read/write behaviour, and ALU results against expected values. Then hand-written RISC-V assembly test programs were assembled, loaded into instruction memory, and run to a known architectural end-state in the registers, confirming each supported instruction. The design was finally synthesised and demonstrated running on the FPGA board."],
+ ["Supported Instruction Encodings (RV32I subset)",`<table class="tbl"><tr><th>Instruction</th><th>opcode</th><th>funct3</th><th>funct7</th></tr><tr><td>ADD / SUB</td><td>0110011</td><td>000</td><td>0000000 / 0100000</td></tr><tr><td>AND / OR / XOR</td><td>0110011</td><td>111 / 110 / 100</td><td>0000000</td></tr><tr><td>SLL / SRL</td><td>0110011</td><td>001 / 101</td><td>0000000</td></tr><tr><td>SLT</td><td>0110011</td><td>010</td><td>0000000</td></tr><tr><td>ADDI</td><td>0010011</td><td>000</td><td>: </td></tr><tr><td>LW / SW</td><td>0000011 / 0100011</td><td>010</td><td>: </td></tr><tr><td>BEQ / BNE</td><td>1100011</td><td>000 / 001</td><td>: </td></tr><tr><td>JAL / LUI</td><td>1101111 / 0110111</td><td>: </td><td>: </td></tr></table>`],
+ ["Datapath Block Diagram",`<figure class="fig"><svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" font-size="10.5"><defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#2B2130"/></marker></defs><g fill="#FDF2F7" stroke="#C2255C" stroke-width="1.4"><rect x="14" y="70" width="60" height="42" rx="6"/><rect x="110" y="70" width="78" height="42" rx="6"/><rect x="228" y="60" width="86" height="62" rx="6"/><rect x="360" y="70" width="70" height="42" rx="6"/><rect x="470" y="70" width="86" height="42" rx="6"/></g><g fill="#9C1E4B" text-anchor="middle"><text x="44" y="95">PC</text><text x="149" y="88">Instr</text><text x="149" y="101">Mem</text><text x="271" y="86">Register</text><text x="271" y="99">File</text><text x="395" y="95">ALU</text><text x="513" y="88">Data Mem</text><text x="513" y="101">/ Write-back</text></g><g stroke="#2B2130" stroke-width="1.4" fill="none" marker-end="url(#ar)"><line x1="74" y1="91" x2="106" y2="91"/><line x1="188" y1="91" x2="224" y2="91"/><line x1="314" y1="91" x2="356" y2="91"/><line x1="430" y1="91" x2="466" y2="91"/></g><path d="M513 112 L513 160 L44 160 L44 116" stroke="#E64980" stroke-width="1.3" fill="none" stroke-dasharray="4 3" marker-end="url(#ar)"/><text x="270" y="174" fill="#7A6B75" text-anchor="middle" font-size="9">write-back / PC+4 or branch target</text></svg><figcaption><b>Fig. 2: Single-cycle fetch/decode/execute datapath.</b> PC addresses instruction memory; decode drives the register file and control; the ALU executes; results write back and the PC advances by 4 or redirects on a taken branch/jump.</figcaption></figure>`],
+ ["RTL: ALU &amp; Register File (VHDL)",{code:`-- RV32I ALU (combinational)
+library ieee; use ieee.std_logic_1164.all; use ieee.numeric_std.all;
+entity alu is
+ port( a, b : in std_logic_vector(31 downto 0);
+    alu_op: in std_logic_vector(3 downto 0);
+    result: out std_logic_vector(31 downto 0);
+    zero : out std_logic );
+end entity;
+architecture rtl of alu is
+ signal r: std_logic_vector(31 downto 0);
+begin
+ process(a, b, alu_op)
+  variable sa: integer range 0 to 31;
+ begin
+  sa:= to_integer(unsigned(b(4 downto 0)));
+  case alu_op is
+   when "0000" => r <= std_logic_vector(unsigned(a) + unsigned(b));  -- ADD
+   when "0001" => r <= std_logic_vector(unsigned(a) - unsigned(b));  -- SUB
+   when "0010" => r <= a and b;                    -- AND
+   when "0011" => r <= a or b;                    -- OR
+   when "0100" => r <= a xor b;                    -- XOR
+   when "0101" => r <= std_logic_vector(shift_left (unsigned(a), sa));-- SLL
+   when "0110" => r <= std_logic_vector(shift_right(unsigned(a), sa));-- SRL
+   when "0111" => r <= (0 => '1', others => '0') when signed(a) < signed(b)
+             else (others => '0');             -- SLT
+   when others => r <= (others => '0');
+  end case;
+ end process;
+ result <= r;
+ zero  <= '1' when r = x"00000000" else '0';
+end architecture;
+
+-- 32 x 32-bit register file: 2 read ports, 1 write port, x0 hardwired to 0
+entity regfile is
+ port( clk    : in std_logic;
+    we    : in std_logic;
+    rs1,rs2,rd: in std_logic_vector(4 downto 0);
+    wd    : in std_logic_vector(31 downto 0);
+    rd1,rd2  : out std_logic_vector(31 downto 0) );
+end entity;
+architecture rtl of regfile is
+ type reg_t is array(0 to 31) of std_logic_vector(31 downto 0);
+ signal x: reg_t:= (others => (others => '0'));
+begin
+ process(clk) begin
+  if rising_edge(clk) then
+   if we = '1' and rd /= "00000" then  -- writes to x0 discarded
+    x(to_integer(unsigned(rd))) <= wd;
+   end if;
+  end if;
+ end process;
+ rd1 <= x(to_integer(unsigned(rs1)));
+ rd2 <= x(to_integer(unsigned(rs2)));
+end architecture;`,cap:"Combinational ALU and synchronous register file. The <span class='mono'>x0 = 0</span> rule is enforced in hardware. Simulated in EDA Playground, then synthesised for the FPGA."}],
+ ["Assembly Test Program",{code:`# hand-assembled RV32I test, loaded into instruction memory
+  addi x1, x0, 5    # x1 = 5
+  addi x2, x0, 7    # x2 = 7
+  add x3, x1, x2   # x3 = 12  (ADD)
+  sub x4, x2, x1   # x4 = 2  (SUB)
+  and x5, x2, x1   # x5 = 5  (AND)
+  slt x6, x1, x2   # x6 = 1  (set-less-than)
+loop:
+  beq x0, x0, loop  # spin: architectural end-state check`,cap:"Loaded into instruction memory; the register end-state is checked in simulation against these expected values, then confirmed on hardware."}],
+ ["Competencies Demonstrated","Register-transfer-level VHDL, datapath and control design, the RISC-V ISA and instruction encoding, testbench-driven verification and waveform analysis, and the full FPGA synthesis/place-and-route/deployment flow."]
+ ]
+},
+{
+ num:"Project 05", cat:["control"], badge:null,
+ title:"PID Controller: Closed-Loop Control of a Second-Order Plant",
+ tools:["MATLAB","Simulink"],
+ summary:"A PID controller designed and tuned against quantitative time-domain objectives, then validated in the frequency domain with gain and phase margins.",
+ sections:[
+ ["Overview","Implementation and tuning of a PID controller in MATLAB/Simulink regulating a second-order plant: the canonical model for servomechanisms, mass-spring-damper systems, and RLC circuits."],
+ ["Methodology","The plant was modelled as a second-order transfer function in a negative-feedback loop. Each term's contribution was studied systematically: proportional gain for speed and stiffness; integral action eliminating steady-state error at the cost of phase lag; derivative action providing anticipatory damping."],
+ ["Tuning & Analysis",["<b>Time domain:</b> gains tuned iteratively to minimise settling time and percentage overshoot while holding zero steady-state error.","<b>Frequency domain:</b> gain and phase margins evaluated to confirm robust stability against model uncertainty: judging the controller on robustness as well as raw performance, as professional practice demands."]],
+ ["Outcomes","Fast, well-damped step response with minimal overshoot, zero steady-state error, and healthy stability margins. Demonstrates classical control theory, transfer-function modelling, systematic tuning, and frequency-domain analysis: directly applicable to motor control, power-converter regulation, and robotics."]
+ ],
+ adv:[
+ ["Plant &amp; Controller Models","The plant is the canonical second-order system; the controller is a parallel-form PID:","<div class='eq'>G(s) = ω<sub>n</sub>² / (s² + 2ζω<sub>n</sub>s + ω<sub>n</sub>²)</div><div class='eq'>C(s) = K<sub>p</sub> + K<sub>i</sub>/s + K<sub>d</sub>·s</div>","Second-order dynamics model servomechanisms, mass-spring-dampers and RLC circuits, so the study generalises directly to real hardware."],
+ ["Role of Each Term",["<b>Proportional K<sub>p</sub>:</b> raises loop gain: faster response and greater stiffness, but alone leaves finite steady-state error and eventually erodes phase margin.","<b>Integral K<sub>i</sub>:</b> adds a pole at the origin, driving steady-state error to zero for a step, at the cost of added phase lag that must be paid back in stability margin.","<b>Derivative K<sub>d</sub>:</b> adds phase lead for anticipatory damping of overshoot; implemented with a filter (finite N) so it does not amplify high-frequency noise."]],
+ ["Time-Domain Targets","Gains were tuned against quantitative step-response criteria. For the dominant second-order pair these map to damping and natural frequency:","<div class='eq'>%OS = 100·exp(−ζπ/√(1−ζ²))    t<sub>s</sub> ≈ 4 / (ζω<sub>n</sub>)</div>","Iteration targeted minimum settling time and overshoot while integral action held zero steady-state error."],
+ ["Frequency-Domain Validation","Beyond the step response, the open loop was assessed on the Bode plot: gain margin (GM) and phase margin (PM) quantify how much extra gain or phase lag the loop tolerates before instability: the standard robustness guard against model uncertainty and plant variation. The tuned design was accepted only when it delivered both fast, well-damped tracking and healthy GM/PM."],
+ ["Result","The final controller achieved a fast, well-damped step response with minimal overshoot, zero steady-state error, and comfortable stability margins: the dual time/frequency assessment that professional control design demands."],
+ ["Representative Plant, Gains &amp; Results",`<table class="tbl"><tr><th>Quantity</th><th>Value</th></tr><tr><td>Plant</td><td>G(s) = 100 / (s&sup2; + 6s + 100), &omega;<sub>n</sub> = 10 rad/s, &zeta; = 0.3</td></tr><tr><td>Tuned gains</td><td>K<sub>p</sub> = 3.5, K<sub>i</sub> = 6.0, K<sub>d</sub> = 0.35</td></tr><tr><td>Overshoot</td><td>~5%</td></tr><tr><td>Settling time (2%)</td><td>~0.8 s</td></tr><tr><td>Steady-state error</td><td>0 (integral action)</td></tr><tr><td>Phase margin</td><td>~65&deg;</td></tr><tr><td>Gain margin</td><td>large (well-damped, single crossover)</td></tr></table><p class="code-cap">Representative plant and tuned gains illustrating the method; the open-loop plant is under-damped and the PID recovers fast, robust tracking.</p>`],
+ ["Simulated Step Response",`<figure class="fig"><svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" font-size="10"><line x1="48" y1="18" x2="48" y2="165" stroke="#EBB8CE"/><line x1="48" y1="165" x2="500" y2="165" stroke="#EBB8CE"/><text x="16" y="58" fill="#7A6B75">1.0</text><text x="16" y="168" fill="#7A6B75">0</text><text x="470" y="182" fill="#7A6B75">time</text><line x1="48" y1="53" x2="500" y2="53" stroke="#E64980" stroke-dasharray="4 4"/><text x="410" y="48" fill="#9C1E4B">reference</text><path d="M48 165 C90 165 96 42 150 46 C185 49 190 58 230 55 C300 52 360 53 500 53" fill="none" stroke="#C2255C" stroke-width="2.5"/><text x="150" y="34" fill="#9C1E4B">~5% overshoot</text></svg><figcaption><b>Fig. 2: Closed-loop step response.</b> Fast rise, ~5% overshoot, and settling to the reference with zero steady-state error: the time-domain target the gains were tuned against.</figcaption></figure>`],
+ ["MATLAB Tuning &amp; Analysis Script",{code:`% Second-order plant: wn = 10 rad/s, zeta = 0.3
+wn = 10; zeta = 0.3;
+G = tf(wn^2, [1 2*zeta*wn wn^2]);
+
+% PID controller (parallel form)
+Kp = 3.5; Ki = 6.0; Kd = 0.35;
+C = pid(Kp, Ki, Kd);
+
+% Closed loop (unity negative feedback)
+T = feedback(C*G, 1);
+
+% --- time-domain performance ---
+info = stepinfo(T);
+fprintf('Overshoot  = %.1f %%\\n', info.Overshoot);
+fprintf('Settling time = %.2f s\\n', info.SettlingTime);
+
+% --- frequency-domain robustness ---
+[Gm, Pm] = margin(C*G);
+fprintf('Gain margin = %.1f dB\\n', 20*log10(Gm));
+fprintf('Phase margin = %.1f deg\\n', Pm);
+
+figure; step(T); grid on; title('Closed-loop step response');
+figure; margin(C*G);      % Bode with GM/PM annotated`,cap:"The script builds the plant and PID, closes the loop, then reports both the step-response metrics (overshoot, settling time) and the stability margins (GM, PM): the dual assessment described above."}],
+ ["Competencies Demonstrated","Classical control theory, transfer-function modelling, Simulink simulation, systematic gain tuning against defined performance criteria, and frequency-domain stability analysis: transferable to motor control, power-converter regulation and robotics (see the Autonomous Robot project's inner-loop discussion)."]
+ ]
+},
+{
+ num:"Project 06", cat:["rf"], badge:null,
+ title:"RF Signal Visualiser: Real-Time Spectrum Analysis with RTL-SDR",
+ tools:["GNU Radio","RTL-SDR","Python"],
+ summary:"A retunable real-time spectrum analyser and FM receiver spanning HF/VHF/UHF, built as a GNU Radio flowgraph with direct IQ-level signal study.",
+ sections:[
+ ["Overview","A real-time RF spectrum analyser built on a low-cost RTL-SDR receiver and GNU Radio Companion: live capture across HF, VHF, and UHF, frequency-domain visualisation, and broadcast FM demodulation: the complete SDR receive chain, hands-on."],
+ ["System Design","The receive chain is a GNU Radio flowgraph: the RTL-SDR source delivers complex baseband IQ samples into FFT-based spectral analysis rendered as live spectrum and waterfall displays. Centre frequency, sample rate, and RF gain are exposed as runtime controls for interactive retuning; Python handles customisation and signal handling alongside the graphical flowgraphs."],
+ ["Signal Analysis & Demodulation",["<b>Spectrum survey:</b> real-world signals examined across HF/VHF/UHF for spectral structure, occupied bandwidth, and behaviour over time.","<b>FM receiver:</b> channel filtering and decimation, quadrature demodulation, and audio resampling producing clean off-air audio.","<b>IQ study:</b> direct work with complex baseband representation, receiver noise floor, dynamic range, and the practical limits of low-cost SDR front-ends."]],
+ ["Outcomes","A practical retunable spectrum analysis tool and FM receiver. Demonstrates applied DSP (FFT, filtering, decimation, demodulation), RF fundamentals, SDR architecture, GNU Radio development, and Python signal processing: bridging classroom theory and live radio."]
+ ],
+ adv:[
+ ["Front End &amp; Complex Sampling","The RTL-SDR delivers complex (I/Q) baseband from a zero-IF tuner and an 8-bit ADC. Working in complex baseband means the usable analysis span equals the sample rate (the full ±f<sub>s</sub>/2 around the tuned centre), and the tuner's LO sets the centre frequency. RF gain, centre frequency and sample rate are exposed as runtime controls for live retuning across HF/VHF/UHF."],
+ ["Spectral Analysis","Spectrum and waterfall come from a windowed FFT of the IQ stream. Resolution bandwidth is set by the transform:","<div class='eq'>RBW = f<sub>s</sub> / N<sub>FFT</sub></div>","A window (e.g. Hann/Blackman-Harris) trades main-lobe width against side-lobe leakage so closely-spaced or weak signals near a strong carrier remain distinguishable; the waterfall adds the time axis to reveal bursts and drift."],
+ ["FM Demodulation Chain",["<b>Channel select:</b> frequency-translate the wanted carrier to 0&nbsp;Hz, low-pass filter to the ~200&nbsp;kHz broadcast-FM channel and decimate to a manageable rate.","<b>Discriminator:</b> instantaneous frequency recovered as the derivative of the IQ phase: <span class='mono'>d/dt · arg(I+jQ)</span>: which is exactly the FM message (peak deviation ~75&nbsp;kHz).","<b>Audio:</b> de-emphasis and a final resample to the sound-card rate produce clean off-air audio."]],
+ ["Noise Floor &amp; Dynamic Range","The work included direct study of the receiver noise floor and the dynamic-range limits of an 8-bit front end: quantisation and spurious behaviour, and how integration/averaging in the FFT trades update rate for a lower visible noise floor. This built an empirical feel for where a low-cost SDR's performance ends."],
+ ["Receiver Parameters (representative)",`<table class="tbl"><tr><th>Parameter</th><th>Value</th></tr><tr><td>Receiver</td><td>RTL-SDR (R820T2 tuner, 8-bit ADC)</td></tr><tr><td>Sample rate</td><td>2.4 MS/s complex (I/Q)</td></tr><tr><td>Centre frequency</td><td>98.4 MHz (broadcast FM), retunable HF/VHF/UHF</td></tr><tr><td>FFT size</td><td>1024 &rarr; RBW &asymp; 2.34 kHz</td></tr><tr><td>Channel bandwidth</td><td>~200 kHz</td></tr><tr><td>Demodulator</td><td>Wideband FM, quadrature discriminator, 75 kHz deviation</td></tr><tr><td>De-emphasis</td><td>50 &micro;s (UK / Europe)</td></tr><tr><td>Audio out</td><td>48 kHz</td></tr></table>`],
+ ["Live Spectrum",`<figure class="fig"><svg viewBox="0 0 520 210" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" font-size="10"><line x1="46" y1="16" x2="46" y2="150" stroke="#EBB8CE"/><line x1="46" y1="150" x2="500" y2="150" stroke="#EBB8CE"/><text x="8" y="40" fill="#7A6B75">0 dB</text><text x="2" y="146" fill="#7A6B75">-80</text><path d="M46 138 L70 140 L92 135 L110 142 L140 137 L170 141 L200 136 L232 139 L250 40 L262 44 L272 132 L300 140 L330 136 L360 141 L400 137 L440 140 L470 136 L500 139" fill="none" stroke="#C2255C" stroke-width="1.6"/><text x="250" y="34" fill="#9C1E4B" text-anchor="middle">FM carrier 98.4 MHz</text><defs><linearGradient id="wf" x1="0" x2="1"><stop offset="0" stop-color="#2B2130"/><stop offset="0.46" stop-color="#2B2130"/><stop offset="0.5" stop-color="#E64980"/><stop offset="0.54" stop-color="#2B2130"/><stop offset="1" stop-color="#2B2130"/></linearGradient></defs><rect x="46" y="160" width="454" height="40" fill="url(#wf)"/><text x="52" y="176" fill="#fff" font-size="9">waterfall (time down)</text></svg><figcaption><b>Fig. 2: Live spectrum and waterfall</b> from the FFT of the RTL-SDR I/Q stream: a strong FM carrier above the receiver noise floor, with the persistent carrier tracing a bright column in the waterfall.</figcaption></figure>`],
+ ["GNU Radio Flowgraph (Python)",{code:`# RTL-SDR wideband-FM receiver + live spectrum (GNU Radio)
+from gnuradio import gr, filter, analog, audio
+import osmosdr
+
+samp_rate = 2.4e6    # RTL-SDR complex sample rate
+center   = 98.4e6    # broadcast-FM station
+audio_rate = 48000
+decim   = 10      # 2.4 MS/s -> 240 kHz channel rate
+
+class fm_rx(gr.top_block):
+  def __init__(self):
+    gr.top_block.__init__(self)
+
+    # --- SDR front end ---
+    self.src = osmosdr.source(args="rtl=0")
+    self.src.set_sample_rate(samp_rate)
+    self.src.set_center_freq(center)
+    self.src.set_gain(40)         # RF gain (dB)
+
+    # --- channel select: low-pass + decimate to 240 kHz ---
+    taps = filter.firdes.low_pass(1.0, samp_rate, 100e3, 20e3)
+    self.chan = filter.freq_xlating_fir_filter_ccc(decim, taps, 0, samp_rate)
+
+    # --- WBFM demod (quadrature discriminator) + de-emphasis ---
+    self.demod = analog.wfm_rcv(
+      quad_rate    = samp_rate / decim,     # 240 kHz
+      audio_decimation= int((samp_rate/decim)/audio_rate))
+
+    self.sink = audio.sink(audio_rate)
+
+    # --- wire it up ---
+    self.connect(self.src, self.chan, self.demod, self.sink)
+
+if __name__ == "__main__":
+  tb = fm_rx()
+  tb.run()`,cap:"Centre frequency, sample rate and RF gain are exposed as runtime controls in GNU Radio Companion; <span class='mono'>wfm_rcv</span> performs the quadrature FM discrimination, channel filtering and de-emphasis. A parallel FFT sink drives the spectrum/waterfall above."}],
+ ["Competencies Demonstrated","Applied DSP (FFT analysis, windowing, filtering, decimation, quadrature demodulation), RF fundamentals (spectrum allocation, occupied bandwidth, noise floor, dynamic range), SDR receive-chain architecture, GNU Radio flowgraph development, and Python signal-processing scripting."]
+ ]
+},
+{
+ num:"Project 07", cat:["control","embedded"], badge:null,
+ title:"Autonomous Mobile Robot: Line Following, Wall Detection & Ball Carriage",
+ tools:["Arduino Nano ESP32","L298N","HC-SR04","SolidWorks","C"],
+ summary:"A self-contained multi-domain robot integrating mechanical, electronic and control design to complete a timed multi-stage course: line following, wall stop within 30 cm, and ball carriage.",
+ svg:SVG_ROBOT,
+ svgcap:"<b>Fig. 1: System wiring / sense–compute–actuate schematic.</b> Two LDR voltage dividers feed A0/A1; an HC-SR04 ultrasonic sensor provides time-of-flight range; the Arduino Nano ESP32 computes a proportional steering correction and drives an L298N dual H-bridge (ENA/ENB PWM + IN1–4 direction) to two rear DC gear motors for differential steering.",
+ sections:[
+ ["Overview","A team project (3 members) to design, build and test an autonomous robot that follows a curved black line on white, stops within 30&nbsp;cm of a wall, reverses into a parking area, and carries a ball throughout: all within a 220&nbsp;mm cube envelope. I contributed across chassis design, sensor electronics, and control-software tuning. The robot was realised as a tightly integrated mechanical, electronic and control system."],
+ ["Chassis & Layout","A compact 200×150&nbsp;mm acrylic plate was designed in SolidWorks and laser-cut at 3&nbsp;mm: room for all components while staying well inside the envelope. Two drive motors mount symmetrically at the rear for differential steering; a 3D-printed roller-ball caster at the front keeps the chassis level and lowers the centre of mass for cornering stability. Electronics sit centrally to concentrate weight over the driven axle for traction, and the ball cup sits at the centre-rear pivot to minimise the lateral acceleration the ball experiences while turning."],
+ ["Sensor Head","Line position is sensed by two LDRs with two illuminating LEDs on a 3D-printed plate, spaced ±35&nbsp;mm from centre. Reflected-light intensity drops over the black line, raising LDR resistance; each LDR forms a voltage divider read on A0/A1. Centred, both read equally; on drift, the imbalance gives a signed error. A 40&nbsp;mm foam shield blocks ambient light for consistent sensing. An HC-SR04 measures wall distance by ultrasonic time-of-flight."],
+ ["Control System",["<b>Error:</b> the Arduino computes a signed error <span class='mono'>e = R_LDR − L_LDR</span>, capturing direction and magnitude of deviation.","<b>Proportional law:</b> <span class='mono'>out = kp·e</span>, applied differentially: <span class='mono'>left = 100 + out</span>, <span class='mono'>right = 100 − out</span>: with base PWM 100 leaving headroom for correction. Smoother than binary on/off logic.","<b>Gain:</b> <span class='mono'>kp = 0.4</span> found empirically (below 0.3 sluggish and lost the line on tight curves; above 0.6 over-corrected and weaved).","<b>Wall stop:</b> below a 30&nbsp;cm threshold, both motors are commanded to zero PWM."]],
+ ["Outcome","Line following, wall stop and ball carriage were all completed reliably. Parking/reversing was the remaining gap: it depended on encoder distance counting (see the Advanced Report for the honest engineering account)."]
+ ],
+ adv:[
+ ["System Specifications","<table class='tbl'><tr><th>Subsystem</th><th>Detail</th></tr><tr><td>Controller</td><td>Arduino Nano ESP32 (240 MHz dual-core)</td></tr><tr><td>Motor driver</td><td>L298N dual H-bridge, PWM speed control</td></tr><tr><td>Drive</td><td>2× DC gear motors, differential, rear-mounted</td></tr><tr><td>Caster</td><td>3D-printed front roller ball</td></tr><tr><td>Line sensor</td><td>2× LDR + LED, dividers on A0/A1, 35 mm spacing</td></tr><tr><td>Proximity</td><td>HC-SR04 ultrasonic, time-of-flight</td></tr><tr><td>Chassis</td><td>200×150 mm acrylic, 3 mm laser-cut</td></tr><tr><td>Envelope</td><td>≤ 220 mm cube (design limit)</td></tr><tr><td>Firmware</td><td>Embedded C (Arduino framework)</td></tr></table>"],
+ ["Control &amp; Signal Parameters","<table class='tbl'><tr><th>Parameter</th><th>Value</th></tr><tr><td>Error signal</td><td>e = R_LDR − L_LDR (signed, 10-bit ADC)</td></tr><tr><td>Proportional gain</td><td>kp = 0.4 (tuned; usable 0.3–0.6)</td></tr><tr><td>Output law</td><td>left = 100 + kp·e ; right = 100 − kp·e</td></tr><tr><td>PWM range</td><td>0–255 (8-bit), base 100</td></tr><tr><td>LDR spacing</td><td>±35 mm from centreline</td></tr><tr><td>Ambient shield</td><td>40 mm foam hood over sensor head</td></tr><tr><td>Wall threshold</td><td>300 mm (HC-SR04, ~58 µs/cm)</td></tr></table>"],
+ ["Proportional Line-Following Law","Two LDR dividers give a signed reflected-light error; a proportional law converts it to a differential steering correction on a common base speed:","<div class='eq'>e = R<sub>LDR</sub> − L<sub>LDR</sub>    out = k<sub>p</sub>·e</div><div class='eq'>left = 100 + out    right = 100 − out</div>","Base PWM 100 (of 255) deliberately leaves headroom in both directions so the correction never clips. k<sub>p</sub> = 0.4 was tuned empirically: &lt;0.3 was sluggish and dropped the line on tight curves; &gt;0.6 over-corrected and weaved. Proportional differential steering is far smoother than binary bang-bang switching."],
+ ["Ultrasonic Wall Stop","The HC-SR04 measures range by echo time-of-flight (~58&nbsp;µs/cm round trip). Below the 300&nbsp;mm threshold both motors are commanded to zero PWM, satisfying the &lt;30&nbsp;cm stopping requirement before the parking stage."],
+ ["Engineering Decisions","Several alternatives were evaluated and deliberately rejected under the schedule: a three-LDR sensor was dropped because its more complex algorithm needed calibration time the timetable did not allow: the two-sensor error proved sufficient and far quicker to tune. Underneath- and rear-mounted battery layouts were rejected for poor packaging and a centre-of-mass shift that cut traction. Extra ball-retention features (side supports, a pendulum) were tested but rejected once the egg-cup geometry alone proved sufficient, reducing mechanical complexity."],
+ ["The Cascaded-Control Lesson","Each motor carried a quadrature encoder intended to close an <i>inner</i> speed loop and equalise wheel speeds against motor tolerance and battery sag, beneath the <i>outer</i> LDR line-following loop. Run together, interaction between the two layers introduced oscillation that worsened line following: a classic cascaded-loop bandwidth-separation problem.","<div class='eq'>Engineering judgement: ship the stable, demonstrably-tuned proportional controller rather than an unstable two-layer loop.</div>","The encoder correction was therefore disabled for the run. Because reversing/parking depended on encoder distance counting, it remained the one incomplete objective: a documented, honest trade rather than a hidden failure."],
+ ["Planned Development","The clear next iteration re-enables the encoders inside a properly tuned PID inner loop: the derivative term damps the cross-coupling oscillation, and the integral term removes the steady-state wheel-speed mismatch from motor tolerance and battery sag. With reliable encoder distance counting restored, reversing/parking becomes achievable by dead-reckoning, and the differential drive gains closed-loop speed regulation independent of supply voltage."],
+ ["Build &amp; Mechanical Design",{shots:[
+  {src:"assets/robot_build_photo.png",cap:"<b>As-built robot</b>: central electronics over the driven rear axle, front roller-ball caster, and the ball cup at the centre-rear pivot."},
+  {src:"assets/robot_chassis_cad.png",cap:"<b>SolidWorks chassis</b>: 200&times;150 mm plate, 3 mm laser-cut acrylic, with the 100 mm front sensor slit."}
+ ]}],
+ ["Sensor Divider Schematic",{img:"assets/robot_ldr_schematic.png",cap:"<b>Two-LDR line-sensor front end</b>: each LDR forms a voltage divider from 5 V to GND, tapped into A0/A1. Reflected light over white pulls the tap one way; the black line pulls it the other, giving the signed error."}],
+ ["Firmware (Arduino C)",{code:`// Autonomous robot: line following, wall stop, ball carriage
+// Arduino Nano ESP32 + L298N dual H-bridge
+
+// --- pin map ---
+const int LDR_L = A0, LDR_R = A1;    // line-sensor dividers
+const int ENA = 5, IN1 = 6, IN2 = 7;   // left motor
+const int ENB = 9, IN3 = 8, IN4 = 10;  // right motor
+const int TRIG = 2, ECHO = 3;      // HC-SR04
+
+const int  BASE  = 100;        // base PWM (0-255)
+const float KP   = 0.4;        // tuned proportional gain
+const int  WALL_MM = 300;        // wall-stop threshold
+
+void setup() {
+ pinMode(IN1,OUTPUT); pinMode(IN2,OUTPUT);
+ pinMode(IN3,OUTPUT); pinMode(IN4,OUTPUT);
+ pinMode(ENA,OUTPUT); pinMode(ENB,OUTPUT);
+ pinMode(TRIG,OUTPUT); pinMode(ECHO,INPUT);
+ digitalWrite(IN1,HIGH); digitalWrite(IN2,LOW);  // both motors forward
+ digitalWrite(IN3,HIGH); digitalWrite(IN4,LOW);
+}
+
+long readRangeMM() {           // HC-SR04 time-of-flight
+ digitalWrite(TRIG,LOW); delayMicroseconds(2);
+ digitalWrite(TRIG,HIGH); delayMicroseconds(10);
+ digitalWrite(TRIG,LOW);
+ long us = pulseIn(ECHO, HIGH, 30000); // 30 ms timeout
+ return us * 10L / 58L;         // ~58 us per cm -> mm
+}
+
+void drive(int l, int r) {
+ analogWrite(ENA, constrain(l,0,255));
+ analogWrite(ENB, constrain(r,0,255));
+}
+
+void loop() {
+ if (readRangeMM() < WALL_MM) { drive(0,0); return; } // wall stop
+
+ int e  = analogRead(LDR_R) - analogRead(LDR_L);   // signed error
+ int out = (int)(KP * e);               // proportional law
+ drive(BASE + out, BASE - out);            // differential steer
+}`,cap:"The proportional law <span class='mono'>out = KP*(R_LDR - L_LDR)</span> with base speed 100 and KP = 0.4, exactly as tuned in the report. The encoder inner loop is intentionally omitted (see the cascaded-control lesson above)."}],
+ ["Competencies Demonstrated","Mechatronic system integration; embedded C on Arduino; analogue sensor interfacing (LDR voltage dividers, ultrasonic time-of-flight); proportional feedback control and empirical gain tuning; mechanical design in SolidWorks with laser-cut and 3D-printed parts; and the engineering judgement to ship a stable, well-characterised subsystem under time constraint rather than an unproven one."]
+ ]
+},
+{
+ num:"Project 08", cat:["rf"], badge:null,
+ title:"2.5 GHz Microstrip Patch Antenna: Analytical Design & CST Optimisation",
+ tools:["CST Microwave Studio","Transmission-line model"],
+ summary:"A rectangular microstrip patch antenna for 2.5 GHz on FR-4, synthesised from transmission-line equations then simulated and optimised in CST: final S11 of −24.3 dB with 5.8 dBi gain, matching the analytical model to within 0.7%.",
+ sections:[
+ ["Overview","A rectangular microstrip patch antenna for 2.5&nbsp;GHz operation, designed on FR-4 (ε<sub>r</sub>&nbsp;=&nbsp;4.6, h&nbsp;=&nbsp;1.6&nbsp;mm) using transmission-line analytical models, then simulated and optimised in CST Microwave Studio. Closed-form expressions set the initial feed width, patch width, patch length and inset-feed depth; parameter sweeps then tuned the design."],
+ ["Analytical Design","The 50&nbsp;Ω feed width came from the Wheeler–Hammerstad expressions (W<sub>f</sub> ≈ 3.0&nbsp;mm on FR-4). The transmission-line model set patch width W<sub>p</sub> = 35.9&nbsp;mm and, via the effective permittivity and fringing-field length extension ΔL, physical length L<sub>p</sub> = 27.6&nbsp;mm. To match the high edge impedance to 50&nbsp;Ω, an inset feed was used; solving the cos² impedance relation gave insertion depth y₀ ≈ 9&nbsp;mm."],
+ ["Simulation & Optimisation","The geometry: a 60×60&nbsp;mm ground plane, FR-4 substrate, 3.0&nbsp;mm feed and inset-fed patch: was solved in CST with the frequency-domain solver over 2.0–3.0&nbsp;GHz. A mesh-convergence study fixed the discretisation at 30 lines/λ. Patch length primarily sets resonant frequency (−64&nbsp;MHz/mm); feed depth primarily sets the match. The optimised design reached S11 = −24.3&nbsp;dB at exactly 2.5&nbsp;GHz."],
+ ["Final Performance","−24.3&nbsp;dB return loss at 2.5&nbsp;GHz, 5.8&nbsp;dBi realised gain, 7.2&nbsp;dBi directivity, 72% radiation efficiency, 78° E-plane and 96° H-plane beamwidths, 18.5&nbsp;dB front-to-back. The optimised patch length (27.8&nbsp;mm) lies within 0.7% of the analytical value: validating the transmission-line approach."],
+ ["Outcomes","Demonstrates RF/microwave antenna design, transmission-line modelling and closed-form synthesis, full-wave EM simulation in CST, mesh-convergence methodology, parameter-sweep optimisation, and interpretation of S-parameters, radiation patterns, gain, efficiency and beamwidth."]
+ ],
+ adv:[
+ ["Design Targets","Operating frequency 2.5&nbsp;GHz; input impedance 50&nbsp;Ω; return loss S11 &lt; −20&nbsp;dB at resonance; FR-4 substrate (ε<sub>r</sub> = 4.6, tanδ = 0.015, h = 1.6&nbsp;mm); 60×60&nbsp;mm board; 35&nbsp;µm copper."],
+ ["Transmission-Line Synthesis","Patch width is set for efficient radiation, then the effective permittivity and fringing extension give the resonant length:","<div class='eq'>W<sub>p</sub> = c/(2f<sub>r</sub>) · √(2/(ε<sub>r</sub>+1))</div><div class='eq'>ε<sub>eff</sub> = (ε<sub>r</sub>+1)/2 + (ε<sub>r</sub>−1)/2 · [1+12h/W<sub>p</sub>]<sup>−½</sup></div><div class='eq'>L<sub>p</sub> = c/(2f<sub>r</sub>√ε<sub>eff</sub>) − 2ΔL</div>","The radiating edge impedance is high (~200&nbsp;Ω+), so an inset feed transforms it to 50&nbsp;Ω via the cos² law, giving y₀ ≈ 9&nbsp;mm. The 50&nbsp;Ω line width follows from Wheeler–Hammerstad.","<table class='tbl'><tr><th>Parameter</th><th>Symbol</th><th>Value</th></tr><tr><td>Feed width</td><td>W_f</td><td>3.0 mm</td></tr><tr><td>Patch width</td><td>W_p</td><td>35.9 mm</td></tr><tr><td>Patch length</td><td>L_p</td><td>27.6 mm</td></tr><tr><td>Inset depth</td><td>y₀</td><td>9.0 mm</td></tr></table>"],
+ ["CST Simulation Setup","The model: PEC ground plane, FR-4 block, 3.0&nbsp;mm feed line, inset-fed patch: was solved with the frequency-domain (tetrahedral) solver over 2.0–3.0&nbsp;GHz. Open (add-space) boundaries on ±X/±Y/+Z model radiation into free space via a perfectly-matched layer; an electric boundary at Z-min represents the ground plane. A waveguide port sized at 5× the feed width and 6× the substrate height captured the full field distribution, including fringing, for accurate impedance extraction."],
+ ["Mesh Convergence","Mesh density was swept from 10 to 40 lines per wavelength; resonant frequency and S11 converged monotonically. 30&nbsp;lpw was selected: effectively converged (0.20% change to the next level) at roughly 40% of the finest-mesh solve time.","<table class='tbl'><tr><th>Lines/λ</th><th>Cells</th><th>f_r (GHz)</th><th>S11 (dB)</th></tr><tr><td>10</td><td>12.5k</td><td>2.62</td><td>−12.4</td></tr><tr><td>20</td><td>89.6k</td><td>2.54</td><td>−16.2</td></tr><tr><td>30</td><td>285k</td><td>2.51</td><td>−17.2</td></tr><tr><td>40</td><td>648k</td><td>2.50</td><td>−17.4</td></tr></table>"],
+ ["Two-Parameter Optimisation","Exploiting the near-orthogonal physical roles of each dimension: sweeping L<sub>p</sub> shifted resonance linearly at −64&nbsp;MHz/mm, placing 2.50&nbsp;GHz at L<sub>p</sub> = 27.8&nbsp;mm; with length fixed, sweeping the feed depth moved the tap along the standing-wave pattern to set the match.","<table class='tbl'><tr><th>y₀ (mm)</th><th>f_r (GHz)</th><th>S11 (dB)</th></tr><tr><td>8.0</td><td>2.503</td><td>−16.8</td></tr><tr><td>9.0</td><td>2.501</td><td>−21.5</td></tr><tr><td>9.5</td><td>2.500</td><td>−24.3</td></tr><tr><td>10.0</td><td>2.499</td><td>−22.1</td></tr></table>"],
+ ["Final Performance","<table class='tbl'><tr><th>Parameter</th><th>Value</th></tr><tr><td>Return loss @ 2.5 GHz</td><td>−24.3 dB</td></tr><tr><td>Peak realised gain</td><td>5.8 dBi</td></tr><tr><td>Peak directivity</td><td>7.2 dBi</td></tr><tr><td>Radiation efficiency</td><td>72%</td></tr><tr><td>E-plane HPBW</td><td>78°</td></tr><tr><td>H-plane HPBW</td><td>96°</td></tr><tr><td>Front-to-back ratio</td><td>18.5 dB</td></tr></table>","The optimised length (27.8&nbsp;mm) sits within 0.7% of the analytical value (27.6&nbsp;mm), and the feed depth needed only a slight adjustment (9.5 vs 9.0&nbsp;mm): a clean validation of the closed-form model."],
+ ["CST Mesh-Convergence Study",{shots:[
+  {src:"assets/patch_mesh_freq.png",cap:"<b>Resonant frequency vs mesh density</b>: monotonic convergence toward the asymptotic value; 30 lines/&lambda; selected."},
+  {src:"assets/patch_mesh_s11.png",cap:"<b>S11 at resonance vs mesh density</b>: per-step change falls below the 0.5% criterion at 25&ndash;30 lines/&lambda;."}
+ ]}],
+ ["CST Optimisation Sweeps",{shots:[
+  {src:"assets/patch_freq_vs_length.png",cap:"<b>Resonant frequency vs patch length</b>: linear at &minus;64 MHz/mm; interpolation places 2.50 GHz at L<sub>p</sub> = 27.8 mm."},
+  {src:"assets/patch_match_vs_feed.png",cap:"<b>S11 vs feed insertion depth</b>: best match &minus;24.3 dB at y&#8320; = 9.5 mm, beyond the &minus;20 dB target."}
+ ]}],
+ ["Transmission-Line Synthesis (Python)",{code:`import numpy as np
+
+c = 3e8      # speed of light
+fr = 2.5e9     # design frequency
+er = 4.6      # FR-4 relative permittivity
+h = 1.6e-3     # substrate height
+
+# --- patch width for efficient radiation ---
+Wp = c/(2*fr) * np.sqrt(2/(er+1))
+
+# --- effective permittivity (wide-microstrip form) ---
+eeff = (er+1)/2 + (er-1)/2 * (1 + 12*h/Wp)**-0.5
+
+# --- fringing-field length extension ---
+dL = 0.412*h * ((eeff+0.3)*(Wp/h+0.264)) \\
+       / ((eeff-0.258)*(Wp/h+0.8))
+
+# --- physical resonant length ---
+Lp = c/(2*fr*np.sqrt(eeff)) - 2*dL
+
+# --- inset-feed depth for a 50 ohm match ---
+#   R_in(y) = R_edge * cos^2(pi*y/Lp)
+R_edge = 200.0
+y0 = (Lp/np.pi) * np.arccos(np.sqrt(50.0/R_edge))
+
+print(f"Wp  = {Wp*1e3:5.1f} mm")
+print(f"eeff = {eeff:5.3f}")
+print(f"Lp  = {Lp*1e3:5.1f} mm")
+print(f"y0  = {y0*1e3:5.1f} mm")
+# -> Wp ~ 35.9 mm, Lp ~ 27.6 mm, y0 ~ 9.0 mm (matches CST to 0.7%)`,cap:"Closed-form transmission-line synthesis producing the initial CST geometry. The computed dimensions land within 0.7% of the optimised full-wave result: the validation claimed in the report."}],
+ ["Competencies Demonstrated","RF/microwave antenna design; transmission-line modelling and closed-form synthesis; full-wave EM simulation in CST Microwave Studio; mesh-convergence and solver-accuracy methodology; parameter-sweep optimisation; and interpretation of S-parameters, radiation patterns, gain, efficiency and beamwidth."]
+ ]
+},
+{
+ num:"In Progress", cat:["wip","embedded"], badge:"Building",
+ title:"Cyberdeck Mini: Raspberry Pi Zero W Handheld",
+ tools:["Raspberry Pi Zero W","ILI9341 TFT","RetroPie","SPI"],
+ summary:"A pocket-sized handheld computer: SPI-driven TFT display, GPIO button matrix, discrete PWM audio stage with transistor amplifier, and custom enclosure.",
+ sections:[
+ ["Overview","A from-scratch handheld build around the Pi Zero W and an ILI9341 2.8\" SPI TFT, running RetroPie. The project applies the same disciplines as the formal portfolio: SPI interfacing, GPIO configuration with pull-ups, discrete analogue audio design: in a self-directed product-style build."],
+ ["Engineering Content",["<b>Display:</b> ILI9341 wired over SPI (CS/DC/RESET/MOSI/SCK mapping) with a custom framebuffer driver (fbcp-ili9341) compiled and configured for boot.","<b>Input:</b> 8-button GPIO matrix with 10 kΩ pull-up configuration; joystick handled digitally (Pi Zero lacks an ADC: documented trade study of MCP3008 SPI ADC option).","<b>Audio:</b> PWM audio with an RC low-pass filter (330 Ω / 10 µF) into a BC547 transistor output stage driving a 4 Ω speaker; rail smoothing with 220 µF bulk capacitance.","<b>Integration:</b> power budgeting for 5 V operation, enclosure layout planning, and staged bring-up: breadboard prototype → verified subsystems → soldered assembly."]],
+ ["Status","Phase 1: subsystem prototyping and component sourcing. Full build guide, wiring tables, and test checklist maintained as project documentation."]
+ ]
+},
+{
+ num:"In Progress", cat:["wip","digital"], badge:"Building",
+ title:"AI FPGA Engineer: Natural Language to Verified VHDL",
+ tools:["Python","VHDL-2008","GHDL","Multi-agent LLM"],
+ summary:"An autonomous multi-agent pipeline converting natural-language hardware requirements into verified, synthesisable VHDL with self-checking testbenches.",
+ sections:[
+ ["Overview","A software project applying LLM agents to hardware design: natural-language requirements are transformed through a staged pipeline: spec → architecture → critic → HDL → verification → simulation → debug → optimisation → docs: into synthesisable VHDL-2008."],
+ ["Engineering Content",["<b>Verification-first:</b> every generated design is checked against a golden model with self-checking testbenches: the same discipline used in my hand-built RISC-V core, automated.","<b>Outputs:</b> hardware specification, block diagram, VHDL source, golden model, testbench, verification results, timing/resource estimates, and an engineering report per design.","<b>Current scope:</b> ALU, counter, comparator, and register generation; GHDL and GTKWave integration for simulation."]],
+ ["Status","Working pipeline for the supported design classes; expanding design coverage and hardening the verification agents. MIT-licensed, documented for release on GitHub."]
+ ]
+}
+];
+
+/* ===== searchable keywords per project (normalised, matched against skill tags) ===== */
+const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g,'');
+const KW = [
+ /*01 amp*/   ["kicad","ltspice","gerberdrill","oscilloscope","signalgenerator","analoguecircuitdesign","pcblayoutgrounding","emcsignalintegrity","semiconductordevicescmos"],
+ /*02 dc*/   ["ltspice","oscilloscope","multimeter","electronicload","signalgenerator","powerelectronics","analoguecircuitdesign","semiconductordevicescmos"],
+ /*03 stm32*/  ["stm32cortexm","uart","i2c","spi","dma","canstudied","oscilloscope","logicanalyser","registerlevelembedded"],
+ /*04 riscv*/  ["edaplayground","riscvisa","processormicroarchitecture"],
+ /*05 pid*/   ["matlabsimulink","classicalcontrolpid"],
+ /*06 rf*/   ["gnuradiocompanion","rtlsdr","dspfftanalysis","rfspectrumdemodulation"],
+ /*07 robot*/  ["arduinoide","solidworks","classicalcontrolpid","roboticsmechatronics","registerlevelembedded"],
+ /*08 patch*/  ["cstmicrowavestudio","rfspectrumdemodulation","antennamicrowavedesign"],
+ /*cyberdeck*/ ["raspberrypi","spi","arduinoide"],
+ /*ai fpga*/  ["ghdl","gitgithub","riscvisa"]
+];
+projects.forEach((p,i)=>p._kw = KW[i]||[]);
+
+/* ===== render cards ===== */
+const grid = document.getElementById("grid");
+projects.forEach((p,i)=>{
+ const el = document.createElement("article");
+ el.className = "card reveal";
+ el.dataset.cat = p.cat.join(" ");
+ el.innerHTML = `${p.badge?`<span class="badge">${p.badge}</span>`:""}
+  <div class="num">${p.num}</div><h3>${p.title}</h3><p>${p.summary}</p>
+  <div class="tools">${p.tools.map(t=>`<span class="tool">${t}</span>`).join("")}</div>
+  <span class="more">Read full report →</span>`;
+ el.addEventListener("click",()=>openModal(i));
+ grid.appendChild(el);
+});
+
+/* ===== filters ===== */
+document.getElementById("filters").addEventListener("click",e=>{
+ if(!e.target.dataset.f) return;
+ document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+ e.target.classList.add("active");
+ const f = e.target.dataset.f;
+ document.querySelectorAll(".card").forEach(c=>{
+  c.classList.toggle("hidden", f!=="all" && !c.dataset.cat.split(" ").includes(f));
+ });
+});
+
+/* ===== render helpers ===== */
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function shotFig(s){return `<figure class="fig shot"><img src="${s.src}" alt="${s.cap?esc(s.cap).replace(/<[^>]+>/g,''):''}" loading="lazy"><figcaption>${s.cap||""}</figcaption></figure>`;}
+function renderContent(c){
+ if(Array.isArray(c)) return `<ul>${c.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+ if(c && typeof c==="object"){
+  if(c.code!==undefined) return `<pre class="code">${esc(c.code)}</pre>${c.cap?`<div class="code-cap">${c.cap}</div>`:""}`;
+  if(c.shots) return `<div class="shot-row">${c.shots.map(shotFig).join("")}</div>`;
+  if(c.img) return shotFig({src:c.img,cap:c.cap});
+ }
+ if(typeof c==="string" && c.trimStart().startsWith("<")) return c;
+ return `<p>${c}</p>`;
+}
+function renderSections(secs){
+ return secs.map(([h,c])=>`<h4>${h}</h4>${renderContent(c)}`).join("");
+}
+function figBlock(p){
+ if(!p.svg) return "";
+ return `<figure class="fig">${p.svg}<figcaption>${p.svgcap||""}</figcaption></figure>`;
+}
+
+/* ===== modal ===== */
+const DOCS = {
+ 0:"reports/PCB_Audio_Amplifier.pdf",
+ 1:"reports/Regulated_DC_Power_Supply.pdf",
+ 2:"reports/STM32_BareMetal_Drivers.pdf",
+ 3:"reports/RISCV_FPGA_Core.pdf",
+ 4:"reports/PID_Controller_Simulation.pdf",
+ 5:"reports/RF_Signal_Visualiser.pdf",
+ 6:"reports/Autonomous_Robot.pdf",
+ 7:"reports/Patch_Antenna_2.5GHz.pdf"
+};
+const backdrop = document.getElementById("backdrop"), modalBody = document.getElementById("modalBody");
+function openModal(i){
+ const p = projects[i];
+ const hasAdv = Array.isArray(p.adv) && p.adv.length;
+ const toggle = hasAdv ? `
+  <div class="rpt-toggle" data-toggle>
+   <button class="rpt-btn active" data-mode="simple">Simplified</button>
+   <button class="rpt-btn" data-mode="adv">Advanced Report</button>
+  </div>
+  <div class="rpt-note">Switch to the Advanced Report for the full technical treatment: equations, register/parameter tables, code and design reasoning.</div>`: "";
+ const docBtn = DOCS[i] ? `<a class="btn-doc" href="${DOCS[i]}" target="_blank" rel="noopener">📄 View full document (PDF) ↗</a>`: "";
+ const advView = hasAdv ? `<div class="rpt-view" data-view="adv">${docBtn}${figBlock(p)}${renderSections(p.adv)}</div>`: "";
+ modalBody.innerHTML = `<div class="num">${p.num}</div><h3>${p.title}</h3>
+  <div class="sub">${p.summary}</div>
+  <div class="tools">${p.tools.map(t=>`<span class="tool">${t}</span>`).join("")}</div>
+  ${toggle}
+  <div class="rpt-view show" data-view="simple">${figBlock(p)}${renderSections(p.sections)}</div>
+  ${advView}`;
+ if(hasAdv){
+  const tg = modalBody.querySelector("[data-toggle]");
+  tg.addEventListener("click",e=>{
+   const b = e.target.closest(".rpt-btn"); if(!b) return;
+   tg.querySelectorAll(".rpt-btn").forEach(x=>x.classList.remove("active"));
+   b.classList.add("active");
+   const mode = b.dataset.mode;
+   modalBody.querySelectorAll(".rpt-view").forEach(v=>v.classList.toggle("show", v.dataset.view===mode));
+   modalBody.scrollTop = 0;
+  });
+ }
+ openBackdrop();
+}
+
+/* ===== topic view: projects that use a skill/tool/domain ===== */
+function openTopic(label){
+ const key = norm(label);
+ const matches = [];
+ projects.forEach((p,i)=>{ if(p._kw.includes(key)) matches.push(i); });
+ const list = matches.length
+  ? `<div class="topic-list">${matches.map(i=>{
+    const p=projects[i];
+    return `<div class="topic-item" data-idx="${i}"><div class="ti-num">${p.num}</div><div><div class="ti-title">${p.title}</div><div class="ti-sub">${p.summary}</div></div></div>`;
+   }).join("")}</div>`
+  : `<p class="topic-empty">This is coursework/studied material not yet tied to a standalone project on this page.</p>`;
+ modalBody.innerHTML = `<div class="num">Topic</div><h3>${label}</h3>
+  <div class="sub">${matches.length} project${matches.length===1?"":"s"} on this page ${matches.length===1?"uses":"use"} this.</div>
+  ${list}`;
+ modalBody.querySelectorAll(".topic-item").forEach(it=>{
+  it.addEventListener("click",()=>openModal(+it.dataset.idx));
+ });
+ openBackdrop();
+}
+
+/* clickable skill tags */
+document.querySelectorAll(".tool.clk").forEach(chip=>{
+ chip.addEventListener("click",()=>openTopic(chip.textContent.trim()));
+});
+
+/* ===== backdrop control ===== */
+function openBackdrop(){ backdrop.classList.add("open"); document.body.style.overflow = "hidden"; }
+function closeModal(){ backdrop.classList.remove("open"); document.body.style.overflow = ""; }
+document.getElementById("closeBtn").addEventListener("click",closeModal);
+backdrop.addEventListener("click",e=>{ if(e.target===backdrop) closeModal(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
+
+/* ===== mobile menu ===== */
+const burger=document.getElementById("burger"), menu=document.getElementById("menu");
+burger.addEventListener("click",()=>menu.classList.toggle("open"));
+menu.addEventListener("click",()=>menu.classList.remove("open"));
+
+/* ===== reveal on scroll + skill bars ===== */
+const io = new IntersectionObserver(es=>es.forEach(en=>{
+ if(en.isIntersecting){
+  en.target.classList.add("in");
+  en.target.querySelectorAll(".bar i").forEach(b=>b.style.width=b.dataset.w+"%");
+  io.unobserve(en.target);
+ }
+}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
