@@ -23,7 +23,6 @@ a{color:var(--primary);text-decoration:none}
 a:hover{text-decoration:underline}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
-/* header */
 header{position:sticky;top:0;z-index:50;background:rgba(255,249,251,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
 .logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--primary-dark)}
@@ -38,7 +37,6 @@ nav a:hover{color:var(--primary);text-decoration:none}
   .burger{display:block}
 }
 
-/* hero */
 .hero{position:relative;padding:84px 0 72px;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background:
   radial-gradient(600px 300px at 85% 10%,rgba(230,73,128,.12),transparent 70%),
@@ -57,20 +55,17 @@ nav a:hover{color:var(--primary);text-decoration:none}
 .btn-ghost{border:1.5px solid var(--border-strong);color:var(--primary-dark);background:var(--card)}
 .btn-ghost:hover{border-color:var(--primary);text-decoration:none;transform:translateY(-1px)}
 
-/* sections */
 section{padding:64px 0}
 .sec-head{margin-bottom:34px}
 .sec-head h2{font-size:2rem;color:var(--ink)}
 .sec-head h2::after{content:"";display:block;width:56px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--primary),var(--accent));margin-top:10px}
 .sec-head p{color:var(--muted);margin-top:12px;max-width:700px}
 
-/* filters */
 .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
 .filter{background:var(--card);border:1.5px solid var(--border);color:var(--muted);font-size:.84rem;font-weight:600;padding:7px 16px;border-radius:999px;cursor:pointer;transition:.15s}
 .filter:hover{border-color:var(--accent);color:var(--primary)}
 .filter.active{background:var(--primary);border-color:var(--primary);color:#fff}
 
-/* project grid */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;box-shadow:var(--shadow);cursor:pointer;transition:.2s;display:flex;flex-direction:column;position:relative;overflow:hidden}
 .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));opacity:0;transition:.2s}
@@ -85,7 +80,6 @@ section{padding:64px 0}
 .badge{position:absolute;top:18px;right:18px;background:var(--pink-soft);color:var(--primary-dark);font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--border-strong)}
 .card.hidden{display:none}
 
-/* modal */
 .modal-backdrop{position:fixed;inset:0;background:rgba(43,33,48,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:48px 16px}
 .modal-backdrop.open{display:flex}
 .modal{background:var(--card);border-radius:20px;max-width:820px;width:100%;padding:44px 48px;position:relative;box-shadow:0 30px 80px rgba(43,33,48,.3)}
@@ -102,8 +96,7 @@ section{padding:64px 0}
 .modal li{margin-bottom:7px}
 .modal li b{color:var(--ink)}
 .modal p{margin-top:6px}
-
-/* report toggle */
+  
 .rpt-toggle{display:inline-flex;background:var(--pink-mist);border:1px solid var(--border);border-radius:999px;padding:4px;gap:4px;margin-bottom:6px}
 .rpt-btn{border:none;background:transparent;color:var(--muted);font-family:'Inter',sans-serif;font-weight:600;font-size:.82rem;padding:7px 16px;border-radius:999px;cursor:pointer;transition:.15s}
 .rpt-btn:hover{color:var(--primary)}
@@ -112,7 +105,6 @@ section{padding:64px 0}
 .rpt-view{display:none}
 .rpt-view.show{display:block}
 
-/* schematic + result figures */
 .fig{margin:18px 0 6px;border:1px solid var(--border);border-radius:14px;background:var(--pink-mist);padding:16px 18px 10px}
 .fig svg{width:100%;height:auto;display:block}
 .fig figcaption{font-size:.78rem;color:var(--muted);margin-top:8px;line-height:1.5}
@@ -123,7 +115,6 @@ section{padding:64px 0}
 @media(max-width:560px){.shot-row{grid-template-columns:1fr}}
 .shot-row figure{margin:0}
 
-/* tech tables + code */
 .tbl{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:.85rem}
 .tbl th,.tbl td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
 .tbl th{color:var(--primary-dark);font-weight:700;background:var(--pink-mist);font-size:.74rem;letter-spacing:.03em;text-transform:uppercase}
@@ -136,7 +127,6 @@ pre.code{background:#241a29;color:#f4e3ec;border-radius:12px;padding:15px 17px;o
 .btn-doc{display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#fff;font-weight:600;font-size:.85rem;padding:10px 18px;border-radius:10px;margin:2px 0 14px;transition:.15s}
 .btn-doc:hover{background:var(--primary-dark);text-decoration:none;transform:translateY(-1px)}
 
-/* skills */
 .skills-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
 .skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;box-shadow:var(--shadow)}
 .skill-card h3{font-size:1.05rem;margin-bottom:14px;color:var(--primary-dark)}
@@ -150,7 +140,6 @@ pre.code{background:#241a29;color:#f4e3ec;border-radius:12px;padding:15px 17px;o
 .tool.clk:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:translateY(-1px)}
 .skills-hint{font-size:.8rem;color:var(--muted);margin:-6px 0 20px;max-width:700px}
 
-/* topic list (inside modal) */
 .topic-list{margin-top:8px}
 .topic-item{border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:.15s;display:flex;gap:12px;align-items:flex-start}
 .topic-item:hover{border-color:var(--primary);background:var(--pink-mist);transform:translateX(3px)}
@@ -178,7 +167,6 @@ pre.code{background:#241a29;color:#f4e3ec;border-radius:12px;padding:15px 17px;o
 .edu-card li{font-size:.9rem;padding:7px 0;border-bottom:1px dashed var(--border);color:#4A3D47}
 .edu-card li:last-child{border-bottom:none}
 
-/* contact + footer */
 .contact-box{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);border-radius:20px;padding:52px 40px;text-align:center;color:#fff}
 .contact-box h2{font-size:1.9rem;margin-bottom:10px}
 .contact-box p{opacity:.92;max-width:560px;margin:0 auto 26px}
@@ -188,7 +176,6 @@ pre.code{background:#241a29;color:#f4e3ec;border-radius:12px;padding:15px 17px;o
 .contact-box .links a{color:#fff;font-weight:600;text-decoration:underline;font-size:.92rem}
 footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.83rem}
 
-/* static (no scroll animation) */
 .reveal{opacity:1;transform:none}
 </style>
 </head>
@@ -213,12 +200,10 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.83rem}
 <section class="hero">
   <div class="wrap">
     <span class="hero-kicker">Electrical &amp; Electronics Engineering · Lancaster University</span>
-    <p class="tagline">I'm Clara, a BEng Electrical &amp; Electronics Engineering student (IET-accredited, 2024–2027) who designs, builds, and verifies real systems: analogue PCBs, bare-metal firmware, FPGA processor cores, control loops, autonomous robots, and software-defined radio.</p>
     <p class="hero-tags"><b>Focus areas:</b> PCB design (KiCad) · embedded C (STM32) · FPGA (VHDL, RISC-V) · control (MATLAB/Simulink) · RF (GNU Radio, SDR) · power electronics</p>
     <div class="cta">
       <a class="btn btn-primary" href="#projects">View Projects</a>
       <a class="btn btn-ghost" href="mailto:urecheclara24@gmail.com">Get in Touch</a>
-      <a class="btn btn-ghost" href="mailto:ureche@lancaster.ac.uk">Get in Touch</a>
     </div>
   </div>
 </section>
@@ -227,7 +212,7 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.83rem}
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Project Portfolio</h2>
-      <p>Eight completed engineering projects spanning the principal domains of the discipline, each carried from specification and simulation through to construction, measurement, and validation, plus current builds in progress. Open any card, then switch to the <b>Advanced Report</b> for the full technical treatment.</p>
+      <p>Nine completed engineering projects across analogue, power, embedded, digital, control, and RF, each carried from specification and simulation through construction, measurement, and validation, plus current builds in progress. Open any card, then switch to the <b>Advanced Report</b> for the full technical treatment.</p>
     </div>
     <div class="filters reveal" id="filters">
       <button class="filter active" data-f="all">All</button>
@@ -376,11 +361,11 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.83rem}
 <section id="contact">
   <div class="wrap">
     <div class="contact-box reveal">
-      <h2>Let's build something.</h2>
-      <p>I'm seeking electrical, embedded, and hardware engineering internship opportunities. If my work looks like a fit for your team, I'd love to hear from you.</p>
-      <a class="btn" href="mailto:urecheclara24@gmail.com">urecheclara24@gmail.com</a>
-      <a class="btn" href="mailto:ureche@lancaster.ac.uk">ureche@lancaster.ac.uk</a>
+      <h2>Contact</h2>
+      <p>I'm seeking electrical, embedded, and hardware engineering internship opportunities.</p>
+      <a class="btn" href="mailto:urecheclara24@gmail.com">urecheclara24@gmail.com (preferred)</a>
       <div class="links">
+        <a href="mailto:ureche@lancaster.ac.uk">ureche@lancaster.ac.uk</a>
         <a href="https://linkedin.com/in/ureche" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/urecheM" target="_blank" rel="noopener">GitHub</a>
       </div>
@@ -400,7 +385,7 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.83rem}
 </div>
 
 <script>
-/* ===== schematics (inline SVG) ===== */
+
 const SVG_AMP = `
 <svg viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" role="img" aria-label="Class-AB power amplifier schematic">
 <style>
@@ -526,7 +511,86 @@ const SVG_ROBOT = `
 <text class="v" x="470" y="418">COMPUTE  e = R_LDR - L_LDR ,  out = kp*e   ACTUATE</text>
 </svg>`;
 
-/* ===== project data ===== */
+const SVG_HDL_ARCH = `
+<svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" role="img" aria-label="hdleval layered architecture diagram">
+<style>
+ .habx{fill:#FFFFFF;stroke:#C2255C;stroke-width:1.6}
+ .habx2{fill:#FDF2F7;stroke:#EBB8CE;stroke-width:1.4}
+ .hatb{fill:#9C1E4B;font-size:12.5px;font-weight:700}
+ .hatv{fill:#7A6B75;font-size:10px}
+ .haar{stroke:#E64980;stroke-width:1.8;fill:none;marker-end:url(#hfa1)}
+</style>
+<defs><marker id="hfa1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#E64980"/></marker></defs>
+<rect class="habx2" x="20" y="20" width="170" height="52" rx="8"/><text class="hatb" x="34" y="42">configs/ (YAML)</text><text class="hatv" x="34" y="58">typed experiment definitions</text>
+<rect class="habx2" x="205" y="20" width="170" height="52" rx="8"/><text class="hatb" x="219" y="42">ModelProvider</text><text class="hatv" x="219" y="58">reference / synthetic / API</text>
+<rect class="habx2" x="390" y="20" width="170" height="52" rx="8"/><text class="hatb" x="404" y="42">PromptStrategy</text><text class="hatv" x="404" y="58">direct / CoT / few-shot / RAG</text>
+<rect class="habx2" x="575" y="20" width="165" height="52" rx="8"/><text class="hatb" x="589" y="42">benchmarks/v1</text><text class="hatv" x="589" y="58">pure data + reference HDL</text>
+<rect class="habx" x="150" y="112" width="460" height="56" rx="10"/><text class="hatb" x="290" y="136">EvaluationHarness</text><text class="hatv" x="200" y="154">one identical 11-stage pipeline for every (model, prompt, benchmark, trial)</text>
+<line class="haar" x1="105" y1="72" x2="240" y2="112"/><line class="haar" x1="290" y1="72" x2="330" y2="112"/><line class="haar" x1="475" y1="72" x2="430" y2="112"/><line class="haar" x1="657" y1="72" x2="520" y2="112"/>
+<rect class="habx2" x="20" y="208" width="220" height="52" rx="8"/><text class="hatb" x="34" y="230">Toolchain adapters</text><text class="hatv" x="34" y="246">GHDL / Yosys / nextpnr</text>
+<rect class="habx2" x="255" y="208" width="230" height="52" rx="8"/><text class="hatb" x="269" y="230">Metric engines</text><text class="hatv" x="269" y="246">functional / structural / resource</text>
+<rect class="habx2" x="500" y="208" width="240" height="52" rx="8"/><text class="hatb" x="514" y="230">Verification stack</text><text class="hatv" x="514" y="246">testbenches / mutation / BMC</text>
+<line class="haar" x1="270" y1="168" x2="150" y2="208"/><line class="haar" x1="380" y1="168" x2="370" y2="208"/><line class="haar" x1="490" y1="168" x2="600" y2="208"/>
+<rect class="habx" x="90" y="300" width="260" height="56" rx="10"/><text class="hatb" x="104" y="324">ExperimentDB (SQLite)</text><text class="hatv" x="104" y="342">append-only, full provenance</text>
+<rect class="habx" x="400" y="300" width="270" height="56" rx="10"/><text class="hatb" x="414" y="324">Generated artifacts</text><text class="hatv" x="414" y="342">leaderboards, reports, papers, site</text>
+<line class="haar" x1="240" y1="260" x2="220" y2="300"/><line class="haar" x1="370" y1="260" x2="300" y2="300"/><line class="haar" x1="600" y1="260" x2="560" y2="300"/>
+<line class="haar" x1="350" y1="328" x2="400" y2="328"/>
+<text class="hatv" x="90" y="384">reproduce.py regenerates every artifact from the registry; no result is typed by hand</text>
+</svg>`;
+
+const SVG_HDL_PIPE = `
+<svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" role="img" aria-label="Eleven-stage evaluation flow diagram">
+<style>
+ .hpst{fill:#FFFFFF;stroke:#C2255C;stroke-width:1.5}
+ .hpst2{fill:#FDF2F7;stroke:#EBB8CE;stroke-width:1.4}
+ .hptt{fill:#9C1E4B;font-size:10.5px;font-weight:700}
+ .hptv{fill:#7A6B75;font-size:9px}
+ .hpfl{stroke:#E64980;stroke-width:1.6;fill:none;marker-end:url(#hfa2)}
+</style>
+<defs><marker id="hfa2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#E64980"/></marker></defs>
+<rect class="hpst" x="15"  y="30" width="108" height="40" rx="8"/><text class="hptt" x="26" y="48">load spec</text><text class="hptv" x="26" y="61">YAML benchmark</text>
+<rect class="hpst" x="143" y="30" width="108" height="40" rx="8"/><text class="hptt" x="154" y="48">build prompt</text><text class="hptv" x="154" y="61">strategy plugin</text>
+<rect class="hpst" x="271" y="30" width="108" height="40" rx="8"/><text class="hptt" x="282" y="48">infer</text><text class="hptv" x="282" y="61">ModelProvider</text>
+<rect class="hpst" x="399" y="30" width="108" height="40" rx="8"/><text class="hptt" x="410" y="48">parse</text><text class="hptv" x="410" y="61">entity extraction</text>
+<rect class="hpst" x="527" y="30" width="108" height="40" rx="8"/><text class="hptt" x="538" y="48">compile</text><text class="hptv" x="538" y="61">GHDL --std=08</text>
+<line class="hpfl" x1="123" y1="50" x2="143" y2="50"/><line class="hpfl" x1="251" y1="50" x2="271" y2="50"/><line class="hpfl" x1="379" y1="50" x2="399" y2="50"/><line class="hpfl" x1="507" y1="50" x2="527" y2="50"/>
+<line class="hpfl" x1="581" y1="70" x2="581" y2="100"/><line class="hpfl" x1="581" y1="100" x2="123" y2="100" style="marker-end:none"/><line class="hpfl" x1="123" y1="100" x2="69" y2="130"/>
+<rect class="hpst" x="15"  y="130" width="108" height="40" rx="8"/><text class="hptt" x="26" y="148">synthesize</text><text class="hptv" x="26" y="161">Yosys netlist</text>
+<rect class="hpst" x="143" y="130" width="108" height="40" rx="8"/><text class="hptt" x="154" y="148">simulate</text><text class="hptv" x="154" y="161">oracle vectors</text>
+<rect class="hpst" x="271" y="130" width="108" height="40" rx="8"/><text class="hptt" x="282" y="148">metrics</text><text class="hptv" x="282" y="161">4 metric levels</text>
+<rect class="hpst" x="399" y="130" width="108" height="40" rx="8"/><text class="hptt" x="410" y="148">properties</text><text class="hptv" x="410" y="161">named invariants</text>
+<rect class="hpst2" x="527" y="130" width="99" height="40" rx="8"/><text class="hptt" x="536" y="148">classify</text><text class="hptv" x="536" y="161">9-class taxonomy</text>
+<rect class="hpst2" x="644" y="130" width="100" height="40" rx="8"/><text class="hptt" x="654" y="148">record</text><text class="hptv" x="654" y="161">SQLite registry</text>
+<line class="hpfl" x1="123" y1="150" x2="143" y2="150"/><line class="hpfl" x1="251" y1="150" x2="271" y2="150"/><line class="hpfl" x1="379" y1="150" x2="399" y2="150"/><line class="hpfl" x1="507" y1="150" x2="527" y2="150"/><line class="hpfl" x1="626" y1="150" x2="644" y2="150"/>
+<text class="hptv" x="15" y="196">Absent tools record "skipped", never a silent pass. HDLEVAL_REQUIRE_TOOLS=1 makes degradation a hard error (CI and all published results).</text>
+</svg>`;
+
+const SVG_HDL_RESULTS = `
+<svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" role="img" aria-label="Pass rate bar chart with confidence intervals">
+<style>
+ .hrax{stroke:#EBB8CE;stroke-width:1}
+ .hrgl{stroke:#F3D9E5;stroke-width:1;stroke-dasharray:3 4}
+ .hrlb{fill:#7A6B75;font-size:10.5px}
+ .hrbl{fill:#9C1E4B;font-size:11px;font-weight:700}
+ .hrci{stroke:#2B2130;stroke-width:1.6}
+</style>
+<line class="hrax" x1="70" y1="20" x2="70" y2="200"/><line class="hrax" x1="70" y1="200" x2="730" y2="200"/>
+<line class="hrgl" x1="70" y1="20" x2="730" y2="20"/><text class="hrlb" x="34" y="24">1.00</text>
+<line class="hrgl" x1="70" y1="65" x2="730" y2="65"/><text class="hrlb" x="34" y="69">0.75</text>
+<line class="hrgl" x1="70" y1="110" x2="730" y2="110"/><text class="hrlb" x="34" y="114">0.50</text>
+<line class="hrgl" x1="70" y1="155" x2="730" y2="155"/><text class="hrlb" x="34" y="159">0.25</text>
+<rect x="110" y="20" width="90" height="180" fill="#C2255C"/><text class="hrbl" x="128" y="14">1.000</text>
+<line class="hrci" x1="155" y1="20" x2="155" y2="32"/><line class="hrci" x1="149" y1="32" x2="161" y2="32"/>
+<rect x="270" y="70" width="90" height="130" fill="#E64980"/><text class="hrbl" x="288" y="62">0.722</text>
+<line class="hrci" x1="315" y1="52" x2="315" y2="94"/><line class="hrci" x1="309" y1="52" x2="321" y2="52"/><line class="hrci" x1="309" y1="94" x2="321" y2="94"/>
+<rect x="430" y="100" width="90" height="100" fill="#EE7FA8"/><text class="hrbl" x="448" y="92">0.556</text>
+<line class="hrci" x1="475" y1="78" x2="475" y2="124"/><line class="hrci" x1="469" y1="78" x2="481" y2="78"/><line class="hrci" x1="469" y1="124" x2="481" y2="124"/>
+<rect x="590" y="120" width="90" height="80" fill="#F5B4CC"/><text class="hrbl" x="608" y="112">0.444</text>
+<line class="hrci" x1="635" y1="96" x2="635" y2="142"/><line class="hrci" x1="629" y1="96" x2="641" y2="96"/><line class="hrci" x1="629" y1="142" x2="641" y2="142"/>
+<text class="hrlb" x="112" y="220">ref-golden</text><text class="hrlb" x="278" y="220">syn-high</text><text class="hrlb" x="442" y="220">syn-mid</text><text class="hrlb" x="602" y="220">syn-low</text>
+<text class="hrlb" x="70" y="244">Simulation success with 95% Wilson intervals. Designed control ordering recovered; extreme intervals disjoint at n=54.</text>
+</svg>`;
+
 const projects = [
 {
  num:"Project 01", cat:["analogue"], badge:null,
@@ -1029,19 +1093,52 @@ print(f"y0   = {y0*1e3:5.1f} mm")
  ]
 },
 {
- num:"In Progress", cat:["wip","digital"], badge:"Building",
- title:"AI FPGA Engineer: Natural Language to Verified VHDL",
- tools:["Python","VHDL-2008","GHDL","Multi-agent LLM"],
- summary:"An autonomous multi-agent pipeline converting natural-language hardware requirements into verified, synthesisable VHDL with self-checking testbenches.",
+ num:"Project 09", cat:["digital"], badge:"Released v1.0",
+ title:"AI FPGA Engineer: Benchmarking LLM-Generated VHDL",
+ tools:["Python","VHDL-2008","GHDL","Yosys","pytest","Docker"],
+ summary:"A reproducible research platform for evaluating LLM-generated VHDL: a versioned 18-circuit benchmark suite, a toolchain-backed evaluation harness, 216 measured runs, and published papers, datasets, and notebooks.",
+ svg:SVG_HDL_ARCH,
+ svgcap:"<b>Fig. 1: Layered platform architecture.</b> Model inference is injected behind a one-method ModelProvider interface, so evaluation code never contains model-specific logic. Every run is recorded in a SQLite registry with full provenance, and every published artifact regenerates from that registry.",
  sections:[
-  ["Overview","A software project applying LLM agents to hardware design: natural-language requirements are transformed through a staged pipeline (spec, architecture, critic, HDL, verification, simulation, debug, optimisation, docs) into synthesisable VHDL-2008."],
-  ["Engineering Content",["<b>Verification-first:</b> every generated design is checked against a golden model with self-checking testbenches, the same discipline used in my hand-built RISC-V core, automated.","<b>Outputs:</b> hardware specification, block diagram, VHDL source, golden model, testbench, verification results, timing/resource estimates, and an engineering report per design.","<b>Current scope:</b> ALU, counter, comparator, and register generation; GHDL and GTKWave integration for simulation."]],
-  ["Status","Working pipeline for the supported design classes; expanding design coverage and hardening the verification agents. MIT-licensed, documented for release on GitHub."]
+  ["Overview","A research platform (hdleval) plus a rule-based generation pipeline (AI FPGA Engineer) for measuring how well language models write synthesisable VHDL. The platform provides a versioned benchmark suite of 18 circuits, one fixed evaluation pipeline graded by real EDA tools (GHDL compile, Yosys synthesis, GHDL simulation against oracle vectors), and statistics that always carry confidence intervals."],
+  ["Why it matters","Unlike software, HDL is not correct because it parses: it must compile under strict language semantics, synthesise to a realisable netlist, and simulate correctly within a resource budget. Published evaluations in this field are often single hand-picked designs inspected by eye. This project replaces that with a controlled, repeatable measurement instrument."],
+  ["Headline results",["<b>216 toolchain-backed evaluations</b> (4 providers, 18 circuits, 3 seeded trials) with GHDL and Yosys required, never mocked.","<b>Positive control recovered at 100%</b> (54/54) and three graded synthetic controls landed in their designed quality order: 72.2%, 55.6%, 44.4%.","<b>All 69 failures attributed to the correct stage:</b> 57 genuine compiler rejections and 12 absent outputs.","<b>Static-only grading overstates correctness:</b> the same designs pass structure-only checks at 83 to 100% versus the true 44 to 72%."]],
+  ["Published artifacts","Research preprint and OpenReview paper, a public benchmark dataset (Kaggle and Hugging Face), two Kaggle notebooks, a technical report for Papers With Code, and GitHub releases v0.1 (Prototype), v0.5 (Verification), v1.0 (Benchmarking). Switch to the Advanced Report for the full treatment."]
+ ],
+ adv:[
+  ["Research Artifacts",`<table class="tbl"><tr><th>Artifact</th><th>Link</th></tr><tr><td>Code repository</td><td><a href="https://github.com/urecheM/ai-fpga-engineer" target="_blank" rel="noopener">github.com/urecheM/ai-fpga-engineer</a></td></tr><tr><td>Benchmark dataset (Kaggle)</td><td><a href="https://www.kaggle.com/datasets/claraureche/llm-fpga-benchmark-vhdl-generation-and-verification" target="_blank" rel="noopener">LLM FPGA Benchmark: VHDL Generation and Verification</a></td></tr><tr><td>Benchmark dataset (Hugging Face)</td><td><a href="https://huggingface.co/datasets/urecheM/llm-fpga-benchmark" target="_blank" rel="noopener">llm-fpga-benchmark</a></td></tr><tr><td>Kaggle notebook (study)</td><td><a href="https://www.kaggle.com/code/claraureche/evaluating-llms-for-synthesizable-vhdl-generation" target="_blank" rel="noopener">Evaluating LLMs for Synthesizable VHDL Generation</a></td></tr><tr><td>Kaggle notebook (pipeline)</td><td><a href="https://www.kaggle.com/code/claraureche/evaluating-llms-on-hardware-design-generation" target="_blank" rel="noopener">Evaluating LLMs on Hardware Design Generation</a></td></tr></table>`],
+  ["System Architecture","The platform is strictly layered: typed YAML configs, a ModelProvider inference interface (reference, synthetic, or API-backed), pluggable prompt strategies, the pure-data benchmark suite, GHDL/Yosys toolchain adapters, metric engines, the evaluation harness, an append-only SQLite registry, and generated leaderboards, reports and papers. Five architecture decision records govern the design. The two most consequential: inference is decoupled from evaluation (no code path allows model-specific grading), and benchmarks are pure data (the suite is releasable and citable on its own). Reproducibility is a build property: <span class='mono'>python reproduce.py</span> regenerates every number, table and figure from the registry."],
+  ["Evaluation Pipeline",`<figure class="fig">${SVG_HDL_PIPE}<figcaption><b>Fig. 2: The identical 11-stage procedure</b> run for every (model, prompt, benchmark, trial) tuple. Metric levels: functional (compile/synth/sim/properties), structural (latch risk, hierarchy, fan-out, FSM states), resource (cell counts, estimated Fmax), process (latency, tokens, retries). Each failure receives exactly one of nine canonical classes assigned by first failing stage, so a simulation failure necessarily compiled and synthesised.</figcaption></figure>`],
+  ["Benchmark Suite",`<table class="tbl"><tr><th>Category</th><th>#</th><th>Circuits</th></tr><tr><td>Arithmetic</td><td>4</td><td>8-bit ripple-carry adder, 8-bit ALU (5 ops), magnitude comparator, 8x8 multiplier</td></tr><tr><td>Communication</td><td>3</td><td>UART TX (8N1), SPI master (mode 0), I2C bit-level controller</td></tr><tr><td>Memory</td><td>3</td><td>synchronous FIFO (depth 16), 32x32 register file (2R1W), 256x8 RAM</td></tr><tr><td>FSM</td><td>2</td><td>1011 sequence detector (overlapping), traffic-light controller</td></tr><tr><td>DSP</td><td>2</td><td>4-tap FIR filter, moving-average filter (window 4)</td></tr><tr><td>Processor</td><td>2</td><td>ALU control decoder, 2-bit saturating branch predictor</td></tr><tr><td>Control</td><td>2</td><td>switch debouncer, PWM generator (8-bit duty)</td></tr></table><p class="code-cap">Each benchmark is pure data: prompt, functional requirements, expected entity interface, verification properties, and a verified VHDL-2008 reference implementation. Difficulty is a fixed weighted sum over seven complexity dimensions (tiers: 1 trivial, 8 easy, 6 moderate, 3 hard), a property of the task, never fitted to any model.</p>`],
+  ["Experimental Design",["<b>baseline-v1:</b> 4 providers x 18 circuits x 3 seeded trials = 216 runs, GHDL and Yosys hard-required (<span class='mono'>ghdl=yes, yosys=yes</span> recorded per run).","<b>reference-golden</b> replays the verified reference: a positive control that must score 100%.","<b>synthetic-high / mid / low</b> apply seeded fault injection (dropped assignments, truncation, absent output): graded negative controls of known-ordered quality.","<b>Statistics:</b> every rate carries a 95% Wilson interval; paired comparisons use McNemar tests; continuous deltas use bootstrap resampling.","<b>Provenance:</b> each run records git commit, environment fingerprint, seeds, inference config, and retry history."]],
+  ["Results",`<table class="tbl"><tr><th>Provider</th><th>Compile success</th><th>Simulation success</th><th>95% CI</th><th>Failures (compile / no-code)</th></tr><tr><td>reference-golden</td><td><b>100%</b></td><td><b>100%</b></td><td>[0.934, 1.000]</td><td>0 / 0</td></tr><tr><td>synthetic-high</td><td>72.2%</td><td>72.2%</td><td>[0.591, 0.824]</td><td>15 / 0</td></tr><tr><td>synthetic-mid</td><td>55.6%</td><td>55.6%</td><td>[0.424, 0.680]</td><td>21 / 3</td></tr><tr><td>synthetic-low</td><td>44.4%</td><td>44.4%</td><td>[0.320, 0.576]</td><td>21 / 9</td></tr></table><figure class="fig">${SVG_HDL_RESULTS}<figcaption><b>Fig. 3: Instrument validation.</b> The positive control scores exactly 54/54, graded controls land in designed order, and adjacent intervals overlap: the resolution limit is reported, not smoothed away.</figcaption></figure>`],
+  ["Error Analysis","All 69 failures fall to two classes: 57 genuine GHDL rejections (<span class='mono'>compilation_error</span>) and 12 absent outputs (<span class='mono'>no_code_generated</span>), the latter growing as fidelity drops (0, then 3, then 9). Re-grading the same designs with static structure checks only (the documented fallback when tools are absent) passes 83 to 100% of them versus the true 44 to 72%, a direct measurement of how much static-only evaluation overstates correctness. Category breakdowns expose blind spots the aggregate hides: synthetic-high scores 100% on arithmetic, communication and FSM but 0% on memory, while synthetic-mid scores 0% on control and DSP but 100% on FSM and processor tasks."],
+  ["Verification Soundness","The verifier is itself tested. A seeded stuck-carry bug, invisible to model-level checks, must make GHDL simulation fail. An 8-class mutation campaign records which stage catches each defect class, with escapes reported rather than hidden. SymbiYosys bounded model checking (depth 24) runs on emitted RTL and is recorded as 'BMC pass (depth N)', never 'proven'. Only place-and-route numbers (nextpnr on iCE40) count as timing measurements, and the estimator's error against them is published. Repository rule: if CI does not prove a claim, the documentation does not make it."],
+  ["Engineering Quality",{code:`# Testing (66 tests: unit / integration / regression / e2e)
+pip install pytest coverage
+pytest
+coverage run -m pytest && coverage report   # 89% line coverage
+
+# Type checking and lint (both gate CI)
+pip install mypy ruff
+mypy src/
+ruff check .
+
+# Pre-commit hooks: ruff -> mypy -> tests before every commit
+pip install pre-commit && pre-commit install`,cap:"Research code held to production standards. CI installs the real GHDL/Yosys toolchain rather than mocking it; there are no advisory-only checks."}],
+  ["Environment: Docker &amp; Dev Container",{code:`# Dockerfile (FROM python:3.11-slim, GHDL + Yosys installed in-image)
+docker build -t hdleval .
+docker run --rm hdleval        # runs reproduce.py end-to-end
+
+# VS Code Dev Container (.devcontainer/ in repo)
+# New users: open the repo in VS Code -> "Reopen in Container"
+# Full toolchain and dependencies, no manual setup`,cap:"A fresh machine reproduces the entire study with two commands. The image ships the open-source HDL toolchain, so compile, synthesis and simulation stages run for real."}],
+  ["Future Work",["<b>Real-model studies</b> through the identical harness (one config line; API responses disk-cached), testing whether structural and resource metrics separate models that pass/fail rates cannot.","<b>Prompting study:</b> a pre-registered protocol comparing zero-shot, few-shot, chain-of-thought and structured-specification prompts (18 circuits x 10 trials, paired McNemar analysis).","<b>Formal methods:</b> from depth-bounded BMC toward k-induction and equivalence checking against references.","<b>Suite v2:</b> expert-tier and hierarchical tasks; empirical recalibration of difficulty weights.","<b>Language generality:</b> Verilog, SystemVerilog and Chisel backends through the modular code-generation interface."]],
+  ["Competencies Demonstrated","Experimental design with positive and negative controls; statistical reporting (Wilson intervals, paired tests); VHDL-2008 and the open-source EDA flow (GHDL, Yosys, nextpnr, SymbiYosys); Python research-software engineering (typed, tested, 89% coverage, CI-gated); reproducibility engineering (registry-driven artifact generation, Docker, dev containers); and research communication (papers, datasets, notebooks, releases)."]
  ]
 }
 ];
 
-/* ===== searchable keywords per project (normalised, matched against skill tags) ===== */
 const norm = s => s.toLowerCase().replace(/[^a-z0-9]/g,'');
 const KW = [
  ["kicad","ltspice","gerberdrill","oscilloscope","signalgenerator","analoguecircuitdesign","pcblayoutgrounding","emcsignalintegrity","semiconductordevicescmos"],
@@ -1053,11 +1150,10 @@ const KW = [
  ["arduinoide","solidworks","classicalcontrolpid","roboticsmechatronics","registerlevelembedded"],
  ["cstmicrowavestudio","rfspectrumdemodulation","antennamicrowavedesign"],
  ["raspberrypi","spi","arduinoide"],
- ["ghdl","gitgithub","riscvisa"]
+ ["ghdl","gitgithub"]
 ];
 projects.forEach((p,i)=>p._kw = KW[i]||[]);
 
-/* ===== render cards ===== */
 const grid = document.getElementById("grid");
 projects.forEach((p,i)=>{
   const el = document.createElement("article");
@@ -1071,7 +1167,6 @@ projects.forEach((p,i)=>{
   grid.appendChild(el);
 });
 
-/* ===== filters ===== */
 document.getElementById("filters").addEventListener("click",e=>{
   if(!e.target.dataset.f) return;
   document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
@@ -1082,7 +1177,6 @@ document.getElementById("filters").addEventListener("click",e=>{
   });
 });
 
-/* ===== render helpers ===== */
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function shotFig(s){return `<figure class="fig shot"><img src="${s.src}" alt="${s.cap?esc(s.cap).replace(/<[^>]+>/g,''):''}" loading="lazy"><figcaption>${s.cap||""}</figcaption></figure>`;}
 function renderContent(c){
@@ -1103,7 +1197,6 @@ function figBlock(p){
   return `<figure class="fig">${p.svg}<figcaption>${p.svgcap||""}</figcaption></figure>`;
 }
 
-/* ===== modal ===== */
 const DOCS = {
   0:"reports/PCB_Audio_Amplifier.pdf",
   1:"reports/Regulated_DC_Power_Supply.pdf",
@@ -1112,7 +1205,8 @@ const DOCS = {
   4:"reports/PID_Controller_Simulation.pdf",
   5:"reports/RF_Signal_Visualiser.pdf",
   6:"reports/Autonomous_Robot.pdf",
-  7:"reports/Patch_Antenna_2.5GHz.pdf"
+  7:"reports/Patch_Antenna_2.5GHz.pdf",
+  9:"reports/preprint%202.pdf"
 };
 const backdrop = document.getElementById("backdrop"), modalBody = document.getElementById("modalBody");
 function openModal(i){
@@ -1146,7 +1240,6 @@ function openModal(i){
   openBackdrop();
 }
 
-/* ===== topic view: projects that use a skill/tool/domain ===== */
 function openTopic(label){
   const key = norm(label);
   const matches = [];
@@ -1170,19 +1263,16 @@ document.querySelectorAll(".tool.clk").forEach(chip=>{
   chip.addEventListener("click",()=>openTopic(chip.textContent.trim()));
 });
 
-/* ===== backdrop control ===== */
 function openBackdrop(){ backdrop.classList.add("open"); document.body.style.overflow = "hidden"; }
 function closeModal(){ backdrop.classList.remove("open"); document.body.style.overflow = ""; }
 document.getElementById("closeBtn").addEventListener("click",closeModal);
 backdrop.addEventListener("click",e=>{ if(e.target===backdrop) closeModal(); });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeModal(); });
 
-/* ===== mobile menu ===== */
 const burger=document.getElementById("burger"), menu=document.getElementById("menu");
 burger.addEventListener("click",()=>menu.classList.toggle("open"));
 menu.addEventListener("click",()=>menu.classList.remove("open"));
 
-/* ===== static: fill skill bars once, no scroll animation ===== */
 document.querySelectorAll(".bar i").forEach(b=>{ b.style.width=b.dataset.w+"%"; });
 </script>
 </body>
