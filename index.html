@@ -78,6 +78,9 @@ section{padding:64px 0}
 .tool{background:var(--pink-mist);border:1px solid var(--border);color:var(--primary-dark);font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:999px}
 .card .more{font-size:.85rem;font-weight:600;color:var(--primary)}
 .badge{position:absolute;top:18px;right:18px;background:var(--pink-soft);color:var(--primary-dark);font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--border-strong)}
+.pin-strip{margin:-26px -26px 16px;background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 26px;border-radius:15px 15px 0 0}
+.card.pinned{border-color:var(--border-strong)}
+.card.pinned .badge{top:44px}
 .card.hidden{display:none}
 
 .modal-backdrop{position:fixed;inset:0;background:rgba(43,33,48,.55);z-index:100;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:48px 16px}
@@ -96,7 +99,7 @@ section{padding:64px 0}
 .modal li{margin-bottom:7px}
 .modal li b{color:var(--ink)}
 .modal p{margin-top:6px}
-  
+
 .rpt-toggle{display:inline-flex;background:var(--pink-mist);border:1px solid var(--border);border-radius:999px;padding:4px;gap:4px;margin-bottom:6px}
 .rpt-btn{border:none;background:transparent;color:var(--muted);font-family:'Inter',sans-serif;font-weight:600;font-size:.82rem;padding:7px 16px;border-radius:999px;cursor:pointer;transition:.15s}
 .rpt-btn:hover{color:var(--primary)}
@@ -148,7 +151,6 @@ pre.code{background:#241a29;color:#f4e3ec;border-radius:12px;padding:15px 17px;o
 .topic-item .ti-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
 .topic-empty{color:var(--muted);font-size:.92rem;margin-top:8px}
 
-/* timeline */
 .timeline{position:relative;margin-left:14px;padding-left:30px;border-left:2px solid var(--border-strong)}
 .tl-item{position:relative;padding-bottom:30px}
 .tl-item:last-child{padding-bottom:0}
@@ -158,7 +160,6 @@ pre.code{background:#241a29;color:#f4e3ec;border-radius:12px;padding:15px 17px;o
 .tl-item .where{font-size:.86rem;color:var(--muted);margin-bottom:6px}
 .tl-item p{font-size:.9rem;color:#4A3D47}
 
-/* education */
 .edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;align-items:start}
 .edu-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:var(--shadow)}
 .edu-card h3{font-size:1.15rem;margin-bottom:4px}
@@ -189,7 +190,6 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.83rem}
       <ul id="menu">
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -285,48 +285,7 @@ footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.83rem}
   </div>
 </section>
 
-<section id="experience">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Experience &amp; Leadership</h2>
-      <p>Teaching, mentoring, and customer-facing roles that shaped how I communicate technical ideas to any audience.</p>
-    </div>
-    <div class="timeline">
-      <div class="tl-item reveal">
-        <span class="when">2024 – Present</span>
-        <h3>Peer Mentor, Electrical &amp; Electronics Engineering</h3>
-        <div class="where">Lancaster University</div>
-        <p>Informal mentor to fellow EEE students: one-on-one technical support, active contributor in course discussion groups, and a first point of call for lab and coursework questions.</p>
-      </div>
-      <div class="tl-item reveal">
-        <span class="when">2024 – Present</span>
-        <h3>Barista</h3>
-        <div class="where">Mighty Mugs Coffee, Seattle, WA</div>
-        <p>High-volume, customer-facing drive-through role; sharpened rapid communication and adaptability across a broad cross-section of customers.</p>
-      </div>
-      <div class="tl-item reveal">
-        <span class="when">2020 – 2023</span>
-        <h3>Ski Instructor &amp; Instructor Team Lead</h3>
-        <div class="where">Washington State, USA</div>
-        <p>Delivered group and private lessons to students aged 6–60 across all skill levels. Recruited and coordinated a team of peer instructors when client volume exceeded individual capacity; built a referral-based client base from scratch.</p>
-      </div>
-      <div class="tl-item reveal">
-        <span class="when">2022 – 2023</span>
-        <h3>English Language Tutor</h3>
-        <div class="where">Online, students in China</div>
-        <p>Taught English to students with Turner syndrome, beginning with no shared language; leveraged conversational Mandarin (6 years of study) to build rapport and adapt instruction.</p>
-      </div>
-      <div class="tl-item reveal">
-        <span class="when">Earlier</span>
-        <h3>Tennis Coach</h3>
-        <div class="where">Bellevue, WA</div>
-        <p>Led group sessions for children aged 4–13, designing session structures balancing skill development with engagement.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="education" style="background:var(--pink-mist)">
+<section id="education">
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Education, Awards &amp; Certifications</h2>
@@ -1093,7 +1052,7 @@ print(f"y0   = {y0*1e3:5.1f} mm")
  ]
 },
 {
- num:"Project 09", cat:["digital"], badge:"Released v1.0",
+ num:"Project 09", cat:["digital"], badge:"Released v1.0", pinned:true,
  title:"AI FPGA Engineer: Benchmarking LLM-Generated VHDL",
  tools:["Python","VHDL-2008","GHDL","Yosys","pytest","Docker"],
  summary:"A reproducible research platform for evaluating LLM-generated VHDL: a versioned 18-circuit benchmark suite, a toolchain-backed evaluation harness, 216 measured runs, and published papers, datasets, and notebooks.",
@@ -1157,14 +1116,14 @@ projects.forEach((p,i)=>p._kw = KW[i]||[]);
 const grid = document.getElementById("grid");
 projects.forEach((p,i)=>{
   const el = document.createElement("article");
-  el.className = "card reveal";
+  el.className = "card reveal" + (p.pinned ? " pinned" : "");
   el.dataset.cat = p.cat.join(" ");
-  el.innerHTML = `${p.badge?`<span class="badge">${p.badge}</span>`:""}
+  el.innerHTML = `${p.pinned?`<div class="pin-strip">★ Pinned</div>`:""}${p.badge?`<span class="badge">${p.badge}</span>`:""}
     <div class="num">${p.num}</div><h3>${p.title}</h3><p>${p.summary}</p>
     <div class="tools">${p.tools.map(t=>`<span class="tool">${t}</span>`).join("")}</div>
     <span class="more">Read full report &rarr;</span>`;
   el.addEventListener("click",()=>openModal(i));
-  grid.appendChild(el);
+  if(p.pinned){ grid.prepend(el); } else { grid.appendChild(el); }
 });
 
 document.getElementById("filters").addEventListener("click",e=>{
@@ -1262,7 +1221,7 @@ function openTopic(label){
 document.querySelectorAll(".tool.clk").forEach(chip=>{
   chip.addEventListener("click",()=>openTopic(chip.textContent.trim()));
 });
-
+  
 function openBackdrop(){ backdrop.classList.add("open"); document.body.style.overflow = "hidden"; }
 function closeModal(){ backdrop.classList.remove("open"); document.body.style.overflow = ""; }
 document.getElementById("closeBtn").addEventListener("click",closeModal);
