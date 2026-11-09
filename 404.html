@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found -Clara Ureche</title>
+<link rel="icon" type="image/png" href="/images/image2.png">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Rubik',sans-serif;background:#fff;color:#1d2129;min-height:100vh;
+       display:flex;align-items:center;justify-content:center;padding:32px 24px}
+  main{width:100%;max-width:1200px;display:grid;grid-template-columns:2fr 3fr;
+       align-items:center;gap:48px}
+  .text h1{font-size:clamp(4rem,10vw,7.5rem);color:#e75480;line-height:1}
+  .text h2{font-size:1.5rem;margin:8px 0 12px}
+  .text p{color:#5a606b;margin-bottom:28px;max-width:380px;line-height:1.6}
+  .text a{display:inline-block;padding:10px 20px;border:1px solid #e75480;border-radius:4px;
+          color:#e75480;text-decoration:none;font-weight:600}
+  .text a:hover{background:#e75480;color:#fff}
+  .pic{display:flex;justify-content:center}
+  .pic img{width:100%;max-height:80vh;object-fit:contain}
+  @media(max-width:760px){
+    main{grid-template-columns:1fr;gap:24px;text-align:center}
+    .pic{order:-1}
+    .pic img{max-height:45vh}
+    .text p{margin-left:auto;margin-right:auto}
+  }
+</style>
+</head>
+<body>
+  <main>
+    <div class="text">
+      <h1>Oh no...</h1>
+      <h2>Page not found</h2>
+      <p>Must have been quite the typo. The page you're looking for doesn't exist or has moved.</p>
+      <a href="/">Back to my actual page</a>
+    </div>
+    <div class="pic">
+      <img src="/images/image3.png" alt="">
+    </div>
+  </main>
+</body>
+</html>
