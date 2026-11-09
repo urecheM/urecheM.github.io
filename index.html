@@ -86,6 +86,9 @@ section:last-of-type{border-bottom:none}
 .prov{font-size:.85rem;color:var(--muted);margin:14px 0 18px;line-height:1.6}
 .link-row{display:flex;flex-wrap:wrap;gap:10px}
 
+#outputs .sec-head{position:relative}
+.side-pic{position:absolute;right:calc(100% + 16px);top:50%;transform:translateY(-50%);width:80px;height:auto}
+@media(max-width:1180px){.side-pic{display:none}}
 .outputs{display:grid;gap:14px}
 .output{border:3px dotted var(--border);border-radius:4px;padding:18px 20px}
 .output .otype{font-size:.92rem;font-weight:700;color:var(--accent)}
@@ -269,6 +272,7 @@ pre.code{background:var(--code-bg);color:var(--code-ink);border-radius:4px;paddi
 <section id="outputs">
   <div class="wrap">
     <div class="sec-head">
+      <img class="side-pic" src="images/image1.png" alt="">
       <h2>My Digital Footprint</h2>
     </div>
     <div class="outputs">
