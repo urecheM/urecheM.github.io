@@ -78,6 +78,16 @@ section:last-of-type{border-bottom:none}
 .tarrow{align-self:center;color:var(--muted);font-size:1rem}
 @media(max-width:640px){.tarrow{display:none}}
 
+.zoom-overlay{position:fixed;inset:0;z-index:9999;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0);transition:background .5s ease}
+.zoom-overlay.go{background:rgba(255,255,255,1)}
+.zoom-overlay img{position:fixed;width:80px;height:auto;
+  transform:translate(-50%,-50%) scale(1);
+  transition:transform .9s cubic-bezier(.6,0,.3,1),left .9s cubic-bezier(.6,0,.3,1),top .9s cubic-bezier(.6,0,.3,1),opacity .3s ease}
+.zoom-overlay.go img{left:50%!important;top:50%!important;transform:translate(-50%,-50%) scale(7) rotate(360deg)}
+.zoom-overlay.out{opacity:0;transition:opacity .35s ease}
+
 .feature{border:3px dotted var(--accent);border-radius:4px;background:var(--surface);padding:28px 30px}
 @media(max-width:640px){.feature{padding:22px 18px}}
 #research{background:var(--accent-soft)}
@@ -289,7 +299,7 @@ pre.code{background:var(--code-bg);color:var(--code-ink);border-radius:4px;paddi
       <p>Scope: the baseline validates the measurement instrument with a reference replay and seeded synthetic providers.</p>
       <p>Experiment baseline-v1: 216 runs (4 providers × 18 circuits × 3 seeded trials), GHDL and Yosys required on every run, benchmark suite v1, reproduce with python reproduce.py or Docker</p>
       <div class="link-row">
-        <a class="btn btn-primary" href="reports/preprint%202.pdf" target="_blank" rel="noopener">Preprint (PDF)</a>
+        <a class="btn btn-primary" href="reports/preprint.pdf" target="_blank" rel="noopener">Preprint (PDF)</a>
         <a class="btn btn-ghost" href="https://www.kaggle.com/datasets/claraureche/llm-fpga-benchmark-vhdl-generation-and-verification" target="_blank" rel="noopener">Dataset Kaggle</a>
         <a class="btn btn-ghost" href="https://github.com/urecheM/ai-fpga-engineer" target="_blank" rel="noopener">GitHub Repo</a>
         <a class="btn btn-ghost" href="https://huggingface.co/datasets/urecheM/llm-fpga-benchmark" target="_blank" rel="noopener">Dataset HuggingFace</a>
@@ -595,30 +605,33 @@ const SVG_HDL_ARCH = `
 </svg>`;
 
 const SVG_HDL_PIPE = `
-<svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono',monospace" role="img" aria-label="Eleven-stage evaluation flow diagram">
+<svg viewBox="0 0 760 156" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eleven-stage evaluation flow diagram">
 <style>
- .hpst{fill:#FFFFFF;stroke:#7E1F3B;stroke-width:1.5}
- .hpst2{fill:#F8F6F7;stroke:#D6CCD0;stroke-width:1.4}
- .hptt{fill:#5E1229;font-size:10.5px;font-weight:700}
- .hptv{fill:#5A606B;font-size:9px}
- .hpfl{stroke:#A84A63;stroke-width:1.6;fill:none;marker-end:url(#hfa2)}
+ .hpn{fill:#5A606B;font-size:10px;font-weight:700;text-anchor:middle;letter-spacing:.08em}
+ .hptt{fill:#000000;font-size:13px;font-weight:700;text-anchor:middle}
+ .hptv{fill:#5A606B;font-size:10px;text-anchor:middle}
+ .hpfl{stroke:#5A606B;stroke-width:1.2}
 </style>
-<defs><marker id="hfa2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#A84A63"/></marker></defs>
-<rect class="hpst" x="15"  y="30" width="108" height="40" rx="8"/><text class="hptt" x="26" y="48">load spec</text><text class="hptv" x="26" y="61">YAML benchmark</text>
-<rect class="hpst" x="143" y="30" width="108" height="40" rx="8"/><text class="hptt" x="154" y="48">build prompt</text><text class="hptv" x="154" y="61">strategy plugin</text>
-<rect class="hpst" x="271" y="30" width="108" height="40" rx="8"/><text class="hptt" x="282" y="48">infer</text><text class="hptv" x="282" y="61">ModelProvider</text>
-<rect class="hpst" x="399" y="30" width="108" height="40" rx="8"/><text class="hptt" x="410" y="48">parse</text><text class="hptv" x="410" y="61">entity extraction</text>
-<rect class="hpst" x="527" y="30" width="108" height="40" rx="8"/><text class="hptt" x="538" y="48">compile</text><text class="hptv" x="538" y="61">GHDL --std=08</text>
-<line class="hpfl" x1="123" y1="50" x2="143" y2="50"/><line class="hpfl" x1="251" y1="50" x2="271" y2="50"/><line class="hpfl" x1="379" y1="50" x2="399" y2="50"/><line class="hpfl" x1="507" y1="50" x2="527" y2="50"/>
-<line class="hpfl" x1="581" y1="70" x2="581" y2="100"/><line class="hpfl" x1="581" y1="100" x2="123" y2="100" style="marker-end:none"/><line class="hpfl" x1="123" y1="100" x2="69" y2="130"/>
-<rect class="hpst" x="15"  y="130" width="108" height="40" rx="8"/><text class="hptt" x="26" y="148">synthesize</text><text class="hptv" x="26" y="161">Yosys netlist</text>
-<rect class="hpst" x="143" y="130" width="108" height="40" rx="8"/><text class="hptt" x="154" y="148">simulate</text><text class="hptv" x="154" y="161">oracle vectors</text>
-<rect class="hpst" x="271" y="130" width="108" height="40" rx="8"/><text class="hptt" x="282" y="148">metrics</text><text class="hptv" x="282" y="161">4 metric levels</text>
-<rect class="hpst" x="399" y="130" width="108" height="40" rx="8"/><text class="hptt" x="410" y="148">properties</text><text class="hptv" x="410" y="161">named invariants</text>
-<rect class="hpst2" x="527" y="130" width="99" height="40" rx="8"/><text class="hptt" x="536" y="148">classify</text><text class="hptv" x="536" y="161">9-class taxonomy</text>
-<rect class="hpst2" x="644" y="130" width="100" height="40" rx="8"/><text class="hptt" x="654" y="148">record</text><text class="hptv" x="654" y="161">SQLite registry</text>
-<line class="hpfl" x1="123" y1="150" x2="143" y2="150"/><line class="hpfl" x1="251" y1="150" x2="271" y2="150"/><line class="hpfl" x1="379" y1="150" x2="399" y2="150"/><line class="hpfl" x1="507" y1="150" x2="527" y2="150"/><line class="hpfl" x1="626" y1="150" x2="644" y2="150"/>
-<text class="hptv" x="15" y="196">Absent tools record "skipped", never a silent pass. HDLEVAL_REQUIRE_TOOLS=1 makes degradation a hard error (CI and all published results).</text>
+<text class="hpn" x="63" y="28">01</text><text class="hptt" x="63" y="48">load spec</text><text class="hptv" x="63" y="64">YAML benchmark</text>
+<line class="hpfl" x1="119" y1="43" x2="134" y2="43"/>
+<text class="hpn" x="190" y="28">02</text><text class="hptt" x="190" y="48">build prompt</text><text class="hptv" x="190" y="64">strategy plugin</text>
+<line class="hpfl" x1="246" y1="43" x2="261" y2="43"/>
+<text class="hpn" x="317" y="28">03</text><text class="hptt" x="317" y="48">infer</text><text class="hptv" x="317" y="64">ModelProvider</text>
+<line class="hpfl" x1="373" y1="43" x2="388" y2="43"/>
+<text class="hpn" x="444" y="28">04</text><text class="hptt" x="444" y="48">parse</text><text class="hptv" x="444" y="64">entity extraction</text>
+<line class="hpfl" x1="500" y1="43" x2="515" y2="43"/>
+<text class="hpn" x="571" y="28">05</text><text class="hptt" x="571" y="48">compile</text><text class="hptv" x="571" y="64">GHDL --std=08</text>
+<line class="hpfl" x1="627" y1="43" x2="642" y2="43"/>
+<text class="hpn" x="698" y="28">06</text><text class="hptt" x="698" y="48">synthesize</text><text class="hptv" x="698" y="64">Yosys netlist</text>
+<text class="hpn" x="126.5" y="108">07</text><text class="hptt" x="126.5" y="128">simulate</text><text class="hptv" x="126.5" y="144">oracle vectors</text>
+<line class="hpfl" x1="182.5" y1="123" x2="197.5" y2="123"/>
+<text class="hpn" x="253.5" y="108">08</text><text class="hptt" x="253.5" y="128">metrics</text><text class="hptv" x="253.5" y="144">4 metric levels</text>
+<line class="hpfl" x1="309.5" y1="123" x2="324.5" y2="123"/>
+<text class="hpn" x="380.5" y="108">09</text><text class="hptt" x="380.5" y="128">properties</text><text class="hptv" x="380.5" y="144">named invariants</text>
+<line class="hpfl" x1="436.5" y1="123" x2="451.5" y2="123"/>
+<text class="hpn" x="507.5" y="108">10</text><text class="hptt" x="507.5" y="128">classify</text><text class="hptv" x="507.5" y="144">9-class taxonomy</text>
+<line class="hpfl" x1="563.5" y1="123" x2="578.5" y2="123"/>
+<text class="hpn" x="634.5" y="108">11</text><text class="hptt" x="634.5" y="128">record</text><text class="hptv" x="634.5" y="144">SQLite registry</text>
 </svg>`;
 
 const SVG_HDL_RESULTS = `
@@ -654,43 +667,39 @@ const projects = [
  slug:"ai-fpga-engineer", group:"featured",
  title:"AI FPGA Engineer: Benchmarking LLM-Generated VHDL",
  short:"A reproducible platform for evaluating LLM-generated VHDL with a real EDA toolchain.",
- summary:"A reproducible research platform for evaluating LLM-generated VHDL: a versioned 18-circuit benchmark suite, a toolchain-backed evaluation harness, 216 measured runs, and a public preprint, dataset and notebooks.",
- type:"Research software, benchmark and preprint",
+ summary:"A reproducible research platform for evaluating LLM-generated VHDL. Versioned 18-circuit benchmark suite, toolchain-backed evaluation harness, 216 measured runs, and a public preprint, dataset and notebooks.",
+ type:"Benchmark and preprint",
  domain:"AI for EDA, digital hardware verification",
- status:"Released v1.0 (releases v0.1 Prototype, v0.5 Verification, v1.0 Benchmarking)",
- evidence:"216 toolchain-backed evaluations (GHDL compile, Yosys synthesis, GHDL simulation)",
+ status:"Released v1.0 (Benchmarking)",
+ evidence:"216 toolchain backed evaluations (GHDL compile, Yosys synthesis, GHDL simulation)",
  tools:["Python","VHDL-2008","GHDL","Yosys","nextpnr","SymbiYosys","pytest","Docker"],
  doc:"reports/AI_FPGA_Engineer.pdf",
  artifacts:[
-  ["Preprint (PDF)","reports/preprint%202.pdf"],
+  ["Preprint (PDF)","reports/AI_FPGA_ENGINEER.pdf"],
   ["Code","https://github.com/urecheM/ai-fpga-engineer"],
-  ["Dataset (Hugging Face)","https://huggingface.co/datasets/urecheM/llm-fpga-benchmark"],
-  ["Dataset (Kaggle)","https://www.kaggle.com/datasets/claraureche/llm-fpga-benchmark-vhdl-generation-and-verification"]
+  ["Dataset (Kaggle)","https://www.kaggle.com/datasets/claraureche/llm-fpga-benchmark-vhdl-generation-and-verification"],
+  ["Dataset (Hugging Face)","https://huggingface.co/datasets/urecheM/llm-fpga-benchmark"]
  ],
- svg:SVG_HDL_ARCH,
- svgcap:"<b>Fig. 1: Layered platform architecture.</b> Model inference is injected behind a one-method ModelProvider interface, so evaluation code never contains model-specific logic. Every run is recorded in a SQLite registry with full provenance, and every published artifact regenerates from that registry.",
+ svgcap:"<b>Fig. 1: Platform architecture.</b> Model inference injected behind a one-method ModelProvider interface. Every run recorded in a SQLite registry with full provenance, and every published artifact regenerates from that registry.",
  sections:[
-  ["Research question","How reliably can language models generate synthesisable, functionally correct VHDL when every candidate is graded by the same toolchain-backed procedure, with compilation, synthesis, simulation and structural quality measured as separate stages?"],
-  ["Motivation","HDL is not correct because it parses. It must compile under strict language semantics, synthesise to a realisable netlist and simulate correctly within a resource budget. Prior benchmarks for LLM-generated HDL [1][2][3] focus mainly on Verilog and on functional pass rates. This work targets VHDL-2008 [4] and separates syntactic validity, compilability, functional correctness and hardware realisability through a fixed evaluation pipeline built on open-source tools [5][6], so that every reported number can be regenerated from a recorded registry."],
-  ["Contributions",`<ol><li><b>Benchmark:</b> a versioned 18-circuit VHDL benchmark released as pure data, with verified reference implementations.</li><li><b>Evaluation methodology:</b> a fixed, toolchain-backed 11-stage pipeline applied identically to every (model, prompt, benchmark, trial) tuple.</li><li><b>Verification methodology:</b> positive and graded negative controls, mutation testing [10] and bounded model checking used to test the evaluator itself.</li><li><b>Reproducibility infrastructure:</b> registry-driven artifact generation, full per-run provenance, and containerised execution.</li><li><b>Empirical finding:</b> static-only evaluation materially overestimates HDL correctness (83 to 100% apparent pass rate against a true 44 to 72%).</li></ol>`],
-  ["System architecture","The platform is strictly layered: typed YAML configs, a ModelProvider inference interface (reference, synthetic or API-backed), pluggable prompt strategies, the pure-data benchmark suite, GHDL and Yosys toolchain adapters, metric engines, the evaluation harness, an append-only SQLite registry, and generated leaderboards, reports and papers. Five architecture decision records govern the design. The two most consequential: inference is decoupled from evaluation (no code path allows model-specific grading), and benchmarks are pure data (the suite is releasable and citable on its own)."],
-  ["Evaluation pipeline",`<figure class="fig">${SVG_HDL_PIPE}<figcaption><b>Fig. 2: The identical 11-stage procedure</b> run for every (model, prompt, benchmark, trial) tuple. Metric levels: functional (compile, synth, sim, properties), structural (latch risk, hierarchy, fan-out, FSM states), resource (cell counts, estimated Fmax), process (latency, tokens, retries). Each failure receives exactly one of nine canonical classes, assigned by the first failing stage, so a simulation failure necessarily compiled and synthesised.</figcaption></figure>`],
-  ["Benchmark suite",`<div class="tscroll"><table class="tbl"><tr><th>Category</th><th>#</th><th>Circuits</th></tr><tr><td>Arithmetic</td><td>4</td><td>8-bit ripple-carry adder, 8-bit ALU (5 ops), magnitude comparator, 8x8 multiplier</td></tr><tr><td>Communication</td><td>3</td><td>UART TX (8N1), SPI master (mode 0), I2C bit-level controller</td></tr><tr><td>Memory</td><td>3</td><td>synchronous FIFO (depth 16), 32x32 register file (2R1W), 256x8 RAM</td></tr><tr><td>FSM</td><td>2</td><td>1011 sequence detector (overlapping), traffic-light controller</td></tr><tr><td>DSP</td><td>2</td><td>4-tap FIR filter, moving-average filter (window 4)</td></tr><tr><td>Processor</td><td>2</td><td>ALU control decoder, 2-bit saturating branch predictor</td></tr><tr><td>Control</td><td>2</td><td>switch debouncer, PWM generator (8-bit duty)</td></tr></table></div><p class="code-cap">Each benchmark contains a prompt, functional requirements, expected entity interface, verification properties and a verified VHDL-2008 reference implementation. Difficulty is a fixed weighted sum over seven complexity dimensions (tiers: 1 trivial, 8 easy, 6 moderate, 3 hard). It is a property of the task and is never fitted to any model.</p>`],
-  ["Experimental design",["<b>baseline-v1:</b> 4 providers × 18 circuits × 3 seeded trials = 216 runs, with GHDL and Yosys hard-required (<span class='mono'>ghdl=yes, yosys=yes</span> recorded per run).","<b>reference-golden</b> replays the verified reference: a positive control that must score 100%.","<b>synthetic-high, synthetic-mid, synthetic-low</b> apply seeded fault injection (dropped assignments, truncation, absent output): graded negative controls of known quality order.","<b>Statistics:</b> every rate carries a 95% Wilson interval [7]; paired comparisons use McNemar tests [8]; continuous deltas use bootstrap resampling [9].","<b>Provenance:</b> each run records git commit, environment fingerprint, seeds, inference configuration and retry history."]],
-  ["Results",`<p class="note">${EV("Measured")} Source: experiment baseline-v1, 216 runs, GHDL and Yosys required on every run.</p><div class="tscroll"><table class="tbl"><tr><th>Provider</th><th>Compile success</th><th>Simulation success</th><th>95% CI</th><th>Failures (compile, no code)</th></tr><tr><td>reference-golden</td><td><b>100%</b></td><td><b>100%</b></td><td>[0.934, 1.000]</td><td>0, 0</td></tr><tr><td>synthetic-high</td><td>72.2%</td><td>72.2%</td><td>[0.591, 0.824]</td><td>15, 0</td></tr><tr><td>synthetic-mid</td><td>55.6%</td><td>55.6%</td><td>[0.424, 0.680]</td><td>21, 3</td></tr><tr><td>synthetic-low</td><td>44.4%</td><td>44.4%</td><td>[0.320, 0.576]</td><td>21, 9</td></tr></table></div><figure class="fig">${SVG_HDL_RESULTS}<figcaption><b>Fig. 3: Instrument validation.</b> The positive control scores exactly 54/54, the graded controls land in their designed order, and adjacent intervals overlap. The resolution limit is reported rather than smoothed away.</figcaption></figure>`],
-  ["Error analysis","All 69 failures fall into two classes: 57 genuine GHDL rejections (<span class='mono'>compilation_error</span>) and 12 absent outputs (<span class='mono'>no_code_generated</span>), the latter growing as fidelity drops (0, then 3, then 9). Re-grading the same designs with static structure checks only (the documented fallback when tools are absent) passes 83 to 100% of them, against the true 44 to 72%. This directly measures how much static-only evaluation overstates correctness. Category breakdowns expose blind spots the aggregate hides: synthetic-high scores 100% on arithmetic, communication and FSM tasks but 0% on memory, while synthetic-mid scores 0% on control and DSP but 100% on FSM and processor tasks."],
-  ["Verifying the evaluator","The verifier is itself tested. A seeded stuck-carry bug, invisible to model-level checks, must make GHDL simulation fail. An 8-class mutation campaign records which stage catches each defect class, and escapes are reported rather than hidden. SymbiYosys bounded model checking (depth 24) runs on emitted RTL and is recorded as 'BMC pass (depth N)', never 'proven'. Only place-and-route numbers (nextpnr on iCE40) count as timing measurements, and the estimator's error against them is published. Repository rule: if CI does not prove a claim, the documentation does not make it."],
-  ["Limitations",["The 18-circuit suite limits task diversity; hierarchical and expert-tier designs are not yet included.","The baseline uses a reference replay and seeded synthetic providers to validate the instrument. It does not yet evaluate or rank real language models.","With n = 54 per provider, adjacent intervals overlap, which limits the statistical resolution between neighbouring quality levels.","The benchmark currently covers VHDL-2008 only.","Resource and timing metrics depend on the toolchain and target device (iCE40 for place-and-route).","Bounded model checking establishes properties only to the stated depth, not full correctness."]],
-  ["Reproducibility",{code:`# Full study from a fresh machine (GHDL and Yosys installed in-image)
+  ["Research Question","How reliably can language models generate synthesisable, functionally correct VHDL when every candidate is evaluated by the same toolchain-backed procedure? Compilation, synthesis, simulation and structural quality measured as separate stages?"],
+  ["Motivation","HDL must compile under strict language semantics, synthesise to a realisable netlist and simulate correctly within resource budget. Prior benchmarks for LLM-generated HDL [1][2][3] focus mainly on Verilog and on functional pass rates. This work targets VHDL-2008 [4] and separates syntactic validity, compilability, functional correctness and hardware realisability through an evaluation pipeline built on open-source tools [5][6], so that every reported number can be regenerated from a recorded registry."],
+  ["Progress",`<ol><li>Benchmark: A versioned 18-circuit VHDL benchmark released as pure data, with verified reference implementations.</li><li>Evaluation methodology: A fixed, toolchain-backed 11-stage pipeline applied identically to every (model, prompt, benchmark, trial) tuple.</li><li>Verification methodology: Positive and graded negative controls, mutation testing [10] and bounded model checking used to test the evaluator itself.</li><li>Reproducibility infrastructure: Registry-driven artifact generation, full per-run provenance, and containerised execution.</li><li>Empirical finding: Static-only evaluation materially overestimates HDL correctness (83 to 100% apparent pass rate against a true 44 to 72%).</li></ol>`],
+  ["System Architecture","The platform is strictly layered: typed YAML configs, a ModelProvider inference interface (reference, synthetic or API-backed), pluggable prompt strats, pure-data benchmark suite, GHDL and Yosys toolchain adapters, metric engines, evaluation harness, an append-only SQLite registry, and generated leaderboards and reports. The two most consequential architecture decisions: inference is decoupled from evaluation (no code path allows model-specific grading), benchmarks are pure data (suite is releasable and citable on its own)."],
+  ["Evaluation Pipeline",`<figure class="fig">${SVG_HDL_PIPE}<figcaption>Fig. 2: 11-stage procedure run for every (model, prompt, benchmark, trial) tuple. Metric levels: functional (compile, synth, sim, properties), structural (latch risk, hierarchy, fan-out, FSM states), resource (cell counts, estimated Fmax), process (latency, tokens, retries). Each failure receives exactly one of nine canonical classes, assigned by the first failing stage, so a simulation failure necessarily compiled and synthesised.</figcaption></figure>`],
+  ["Benchmark Suite",`<div class="tscroll"><table class="tbl"><tr><th>Category</th><th>#</th><th>Circuits</th></tr><tr><td>Arithmetic</td><td>4</td><td>8-bit ripple-carry adder, 8-bit ALU (5 ops), magnitude comparator, 8x8 multiplier</td></tr><tr><td>Communication</td><td>3</td><td>UART TX (8N1), SPI master (mode 0), I2C bit-level controller</td></tr><tr><td>Memory</td><td>3</td><td>synchronous FIFO (depth 16), 32x32 register file (2R1W), 256x8 RAM</td></tr><tr><td>FSM</td><td>2</td><td>1011 sequence detector (overlapping), traffic-light controller</td></tr><tr><td>DSP</td><td>2</td><td>4-tap FIR filter, moving-average filter (window 4)</td></tr><tr><td>Processor</td><td>2</td><td>ALU control decoder, 2-bit saturating branch predictor</td></tr><tr><td>Control</td><td>2</td><td>switch debouncer, PWM generator (8-bit duty)</td></tr></table></div><p class="code-cap">Each benchmark contains- prompt, functional requirements, expected entity interface, verification properties and a verified VHDL-2008 reference implementation. Difficulty is a fixed weighted sum over 7 complexity dimensions (tiers: 1 trivial, 8 easy, 6 moderate, 3 hard) (it is a property of the task and is never fitted to any model)</p>`],
+  ["Experimental design",["baseline-v1: 4 providers × 18 circuits × 3 seeded trials = 216 runs, with GHDL and Yosys hard-required (ghdl=yes,yosys=yes recorded per run).","reference-golden replays the verified reference (positive control that must score 100%)","synthetic-high, synthetic-mid, synthetic-low apply seeded fault injection (dropped assignments, truncation, absent output) (graded negative controls of known quality order)","Statistics: every rate carries a 95% Wilson interval [7]; paired comparisons use McNemar tests [8]; continuous deltas use bootstrap resampling [9].","Provenance: each run records commit, environment fingerprint, seeds, inference configuration and retry history."]],
+  ["Results",`<p>Source: experiment baseline-v1, all runs, GHDL + Yosys required on each.</p><div class="tscroll"><table class="tbl"><tr><th>Provider</th><th>Compile success</th><th>Simulation success</th><th>95% CI</th><th>Failures (compile, no code)</th></tr><tr><td>reference-golden</td><td><b>100%</b></td><td><b>100%</b></td><td>[0.934, 1.000]</td><td>0, 0</td></tr><tr><td>synthetic-high</td><td>72.2%</td><td>72.2%</td><td>[0.591, 0.824]</td><td>15, 0</td></tr><tr><td>synthetic-mid</td><td>55.6%</td><td>55.6%</td><td>[0.424, 0.680]</td><td>21, 3</td></tr><tr><td>synthetic-low</td><td>44.4%</td><td>44.4%</td><td>[0.320, 0.576]</td><td>21, 9</td></tr></table></div><figure class="fig">${SVG_HDL_RESULTS}<figcaption>Fig. 3: Instrument validation. The positive control scores exactly 54/54, the graded controls land in their designed order, and adjacent intervals overlap.</figcaption></figure>`],
+  ["Error Analysis","All 69 failures fall into two classes: 57 real GHDL rejections (compilation_error) and 12 absent outputs (no_code_generated), with absent outputs growing as fidelity drops (0 then 3 then 9). Re-grading the same designs with static structure checks only passes 83 to 100% of them, compared to the 44 to 72%. !! Static-only evaluation overstates correctness ! significantly! Category breakdowns: synthetic-high scores 100% on arithmetic, communication and FSM tasks but 0% on memory, while synthetic-mid scores 0% on control and DSP but 100% on FSM and processor tasks."],
+  ["Verifying the Evaluator","A seeded stuck-carry bug that passes model-level checks must make GHDL simulation fail. An 8-class mutation campaign records which stage catches each defect class, and the ones that go through are reported. SymbiYosys bounded model checking (depth 24) runs on emitted RTL and is recorded as 'BMC pass (depth N)'. Only place-and-route numbers (nextpnr on iCE40) count as timing measurements- estimator's error against them is published."],
+  ["Limitations",["18-circuit suite limits task diversity. Hierarchical and expert-tier designs not yet included.","With n=54 per provider, adjacent intervals overlap -> limits statistical resolution between neighbouring quality levels.","The benchmark currently covers VHDL-2008 only.","Resource and timing metrics depend on toolchain and target device (iCE40 for place-and-route).","Bounded model checking establishes properties only to the stated depth."]],
+  ["Reproducibility",{code:`# Full study from new machine (GHDL and Yosys installed in-image)
 docker build -t hdleval .
 docker run --rm hdleval        # runs reproduce.py end-to-end
 
-# Or regenerate every table and figure from the registry directly
-python reproduce.py
-
-# VS Code Dev Container (.devcontainer/ in repo):
-# open the repo in VS Code, then "Reopen in Container"`,cap:"The image ships the open-source HDL toolchain, so compile, synthesis and simulation stages run for real. Absent tools record 'skipped', and HDLEVAL_REQUIRE_TOOLS=1 makes degradation a hard error for CI and all published results."}],
-  ["Software quality",{code:`# Testing (66 tests: unit, integration, regression, e2e)
+# Regenerate every table and figure from the registry directly
+python reproduce.py`,cap:"The image ships the open-source HDL toolchain to run compile, synthesis and simulation stages. Absent tools record 'skipped', and HDLEVAL_REQUIRE_TOOLS=1 makes degradation a hard error for CI and all published results."}],
+  ["Software Quality",{code:`# Testing (66 tests: unit, integration, regression, e2e)
 pytest
 coverage run -m pytest && coverage report   # 89% line coverage
 
@@ -699,8 +708,8 @@ mypy src/
 ruff check .
 
 # Pre-commit hooks: ruff, then mypy, then tests before every commit
-pre-commit install`,cap:"CI installs the real GHDL and Yosys toolchain rather than mocking it, and no check is advisory-only."}],
-  ["Future work",["<b>Real-model studies</b> through the identical harness (one config line; API responses disk-cached), testing whether structural and resource metrics separate models that pass and fail rates cannot.","<b>Prompting study:</b> a pre-registered protocol comparing zero-shot, few-shot, chain-of-thought and structured-specification prompts (18 circuits × 10 trials, paired McNemar analysis).","<b>Formal methods:</b> from depth-bounded BMC toward k-induction and equivalence checking against references.","<b>Suite v2:</b> expert-tier and hierarchical tasks; empirical recalibration of difficulty weights.","<b>Language generality:</b> Verilog, SystemVerilog and Chisel backends through the modular code-generation interface."]],
+pre-commit install`,cap:""}],
+  ["Future Work",["Ollama model studies through identical harness (one config line, API responses disk-cached), testing whether structural and resource metrics separate models that pass and fail rates cannot.","Prompting study: comparison of zero-shot, few-shot, chain-of-thought and structured-specification prompts (18 circuits ×10 trials, McNemar analysis).","k-induction and equivalence checking against references.","Suite v2: expert-tier and hierarchical tasks, empirical recalibration of difficulty weights.","Language generality: Verilog, SystemVerilog and Chisel backends through the modular code-generation interface (far along)"]],
   ["References",`<ol class="refs"><li>S. Thakur et al., "Benchmarking Large Language Models for Automated Verilog RTL Code Generation," in Proc. DATE, 2023.</li><li>M. Liu, N. Pinckney, B. Khailany and H. Ren, "VerilogEval: Evaluating Large Language Models for Verilog Code Generation," in Proc. ICCAD, 2023.</li><li>Y. Lu, S. Liu, Q. Zhang and Z. Xie, "RTLLM: An Open-Source Benchmark for Design RTL Generation with Large Language Model," in Proc. ASP-DAC, 2024.</li><li>IEEE Std 1076-2008, IEEE Standard VHDL Language Reference Manual, 2009.</li><li>GHDL, open-source VHDL analyser, compiler and simulator. <a href="https://github.com/ghdl/ghdl" target="_blank" rel="noopener">github.com/ghdl/ghdl</a></li><li>C. Wolf et al., Yosys Open SYnthesis Suite. <a href="https://yosyshq.net/yosys/" target="_blank" rel="noopener">yosyshq.net/yosys</a></li><li>E. B. Wilson, "Probable inference, the law of succession, and statistical inference," J. Amer. Statist. Assoc., vol. 22, no. 158, pp. 209 to 212, 1927.</li><li>Q. McNemar, "Note on the sampling error of the difference between correlated proportions or percentages," Psychometrika, vol. 12, no. 2, pp. 153 to 157, 1947.</li><li>B. Efron and R. J. Tibshirani, An Introduction to the Bootstrap. Chapman and Hall, 1993.</li><li>Y. Jia and M. Harman, "An Analysis and Survey of the Development of Mutation Testing," IEEE Trans. Softw. Eng., vol. 37, no. 5, pp. 649 to 678, 2011.</li></ol>`]
  ]
 },
@@ -1373,6 +1382,31 @@ function pastelConfetti(){
     if (t < 4000) requestAnimationFrame(frame); else c.remove();
   })(start);
 }
+
+document.addEventListener("click", e => {
+  const card = e.target.closest('a[href="#project/cyberdeck-mini"]');
+  if (!card || e.metaKey || e.ctrlKey) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  e.preventDefault();
+
+  const overlay = document.createElement("div");
+  overlay.className = "zoom-overlay";
+  const img = document.createElement("img");
+  img.src = "images/raspberry.png";
+  img.alt = "";
+  img.style.left = e.clientX + "px";
+  img.style.top = e.clientY + "px";
+  overlay.appendChild(img);
+  document.body.appendChild(overlay);
+
+  requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add("go")));
+
+  setTimeout(() => {
+    location.hash = "project/cyberdeck-mini";
+    overlay.classList.add("out");
+    setTimeout(() => overlay.remove(), 400);
+  }, 1000);
+});
 </script>
 </body>
 </html>
